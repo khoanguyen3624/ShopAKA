@@ -1,0 +1,247 @@
+﻿@{
+    ViewBag.Title = "ShopAKA - Đăng Nhập / Đăng Ký";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="login-container">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="login-left">
+                                    <div class="welcome-content">
+                                        <div class="logo-section mb-4">
+                                            <h1 class="logo-text">ShopAKA</h1>
+                                            <p class="logo-subtitle">Cửa hàng điện tử uy tín</p>
+                                        </div>
+                                        <h2 class="welcome-text">Chào mừng trở lại!</h2>
+                                        <p class="welcome-desc">
+                                            Đăng nhập để tiếp tục mua sắm và trải nghiệm những sản phẩm chất lượng cao.
+                                        </p>
+                                        <div class="feature-list">
+                                            <div class="feature-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Sản phẩm chính hãng 100%</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Giao hàng nhanh chóng</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Bảo hành uy tín</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Hỗ trợ 24/7</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="login-right">
+                                    <div class="login-form">
+                                        <div id="loginForm" class="form-content">
+                                            <div class="form-header">
+                                                <h2 class="form-title">Đăng Nhập</h2>
+                                                <p class="form-subtitle">Nhập thông tin để đăng nhập</p>
+                                            </div>
+
+                                            <form>
+                                                <div class="form-group">
+                                                    <label class="form-label">
+                                                        <i class="fas fa-envelope"></i>
+                                                        Email
+                                                    </label>
+                                                    <input type="email" class="form-control" placeholder="Nhập email của bạn" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">
+                                                        <i class="fas fa-lock"></i>
+                                                        Mật khẩu
+                                                    </label>
+                                                    <div class="password-input">
+                                                        <input type="password" id="loginPassword" class="form-control" placeholder="Nhập mật khẩu" required>
+                                                        <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-options">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                                        <label class="form-check-label" for="rememberMe">
+                                                            Ghi nhớ đăng nhập
+                                                        </label>
+                                                    </div>
+                                                    <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                                                </div>
+
+                                                <button type="submit" class="btn-login">
+                                                    <i class="fas fa-sign-in-alt me-2"></i>
+                                                    Đăng Nhập
+                                                </button>
+
+                                                <div class="divider">
+                                                    <span>Hoặc</span>
+                                                </div>
+
+                                                <div class="social-login">
+                                                    <button type="button" class="btn-social google">
+                                                        <i class="fab fa-google"></i>
+                                                        <span>Google</span>
+                                                    </button>
+                                                    <button type="button" class="btn-social facebook">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="form-footer">
+                                                    <p>Chưa có tài khoản? 
+                                                        <button type="button" class="btn-link" onclick="switchToRegister()">
+                                                            Đăng ký ngay
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div id="registerForm" class="form-content" style="display: none;">
+                                            <div class="form-header">
+                                                <h2 class="form-title">Đăng Ký</h2>
+                                                <p class="form-subtitle">Tạo tài khoản mới</p>
+                                            </div>
+
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label">
+                                                                <i class="fas fa-user"></i>
+                                                                Họ và tên
+                                                            </label>
+                                                            <input type="text" class="form-control" placeholder="Nhập họ và tên" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label">
+                                                                <i class="fas fa-phone"></i>
+                                                                Số điện thoại
+                                                            </label>
+                                                            <input type="tel" class="form-control" placeholder="Nhập số điện thoại" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">
+                                                        <i class="fas fa-envelope"></i>
+                                                        Email
+                                                    </label>
+                                                    <input type="email" class="form-control" placeholder="Nhập email của bạn" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">
+                                                        <i class="fas fa-lock"></i>
+                                                        Mật khẩu
+                                                    </label>
+                                                    <div class="password-input">
+                                                        <input type="password" id="registerPassword" class="form-control" placeholder="Nhập mật khẩu" required>
+                                                        <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">
+                                                        <i class="fas fa-lock"></i>
+                                                        Xác nhận mật khẩu
+                                                    </label>
+                                                    <div class="password-input">
+                                                        <input type="password" id="confirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
+                                                        <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                        Địa chỉ
+                                                    </label>
+                                                    <textarea class="form-control" rows="3" placeholder="Nhập địa chỉ của bạn"></textarea>
+                                                </div>
+
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                                    <label class="form-check-label" for="agreeTerms">
+                                                        Tôi đồng ý với <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo mật</a>
+                                                    </label>
+                                                </div>
+
+                                                <button type="submit" class="btn-login">
+                                                    <i class="fas fa-user-plus me-2"></i>
+                                                    Đăng Ký Tài Khoản
+                                                </button>
+
+                                                <div class="divider">
+                                                    <span>Hoặc</span>
+                                                </div>
+
+                                                <div class="social-login">
+                                                    <button type="button" class="btn-social google">
+                                                        <i class="fab fa-google"></i>
+                                                        <span>Google</span>
+                                                    </button>
+                                                    <button type="button" class="btn-social facebook">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="form-footer">
+                                                    <p>Đã có tài khoản? 
+                                                        <button type="button" class="btn-link" onclick="switchToLogin()">
+                                                            Đăng nhập ngay
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Login.js"></script>
+</body>
+</html>

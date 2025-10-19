@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "ShopAKA - Trang Chủ";
+}
+
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="container">
+                <div class="row align-items-center min-vh-100">
+                    <div class="col-lg-12 text-center">
+                        <h1 class="hero-title">Chào Mừng Đến Với ShopAKA</h1>
+                        <p class="hero-subtitle">Khám phá những sản phẩm chất lượng cao với giá cả hợp lý</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary btn-lg" onclick="scrollToProducts()">Mua Ngay</button>
+                            <button class="btn btn-outline-primary btn-lg" onclick="scrollToProducts()">Xem Thêm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h4>Giao Hàng Nhanh</h4>
+                        <p>Giao hàng miễn phí trong vòng 24h</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Bảo Hành Chính Hãng</h4>
+                        <p>Bảo hành 12 tháng cho tất cả sản phẩm</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>Hỗ Trợ 24/7</h4>
+                        <p>Đội ngũ chăm sóc khách hàng chuyên nghiệp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products-section py-5 bg-light">
+        <div class="container">
+    <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
+                    <p class="section-subtitle">Những sản phẩm được yêu thích nhất</p>
+                </div>
+            </div>
+            
+            <div class="product-category-section mb-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="category-title text-center mb-4">
+                            <i class="fas fa-mobile-alt me-2"></i>iPhone
+                        </h3>
+                    </div>
+                </div>
+                <div class="row" id="iphone-products">
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-primary btn-lg" onclick="toggleProducts('iphone')" id="iphone-toggle-btn">
+                        <span class="load-more-text">Xem Thêm iPhone</span>
+                        <span class="loading d-none">Đang tải...</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="product-category-section mb-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="category-title text-center mb-4">
+                            <i class="fas fa-mouse me-2"></i>Chuột Máy Tính
+                        </h3>
+                    </div>
+                </div>
+                <div class="row" id="mouse-products">
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-primary btn-lg" onclick="toggleProducts('mouse')" id="mouse-toggle-btn">
+                        <span class="load-more-text">Xem Thêm Chuột</span>
+                        <span class="loading d-none">Đang tải...</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="product-category-section mb-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="category-title text-center mb-4">
+                            <i class="fas fa-laptop me-2"></i>Laptop
+                        </h3>
+                    </div>
+                </div>
+                <div class="row" id="laptop-products">
+                </div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-primary btn-lg" onclick="toggleProducts('laptop')" id="laptop-toggle-btn">
+                        <span class="load-more-text">Xem Thêm Laptop</span>
+                        <span class="loading d-none">Đang tải...</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Về Chúng Tôi</h2>
+                    <p class="about-text">
+                        ShopAKA là cửa hàng trực tuyến hàng đầu chuyên cung cấp các sản phẩm chất lượng cao 
+                        với giá cả hợp lý. Với hơn 5 năm kinh nghiệm trong lĩnh vực thương mại điện tử, 
+                        chúng tôi cam kết mang đến cho khách hàng những trải nghiệm mua sắm tốt nhất.
+                    </p>
+                    <ul class="about-features">
+                        <li><i class="fas fa-check text-primary me-2"></i>Sản phẩm chính hãng 100%</li>
+                        <li><i class="fas fa-check text-primary me-2"></i>Giao hàng nhanh chóng</li>
+                        <li><i class="fas fa-check text-primary me-2"></i>Bảo hành uy tín</li>
+                        <li><i class="fas fa-check text-primary me-2"></i>Hỗ trợ khách hàng 24/7</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="~/images/aka_tt.jpg" alt="Về chúng tôi" class="img-fluid rounded-3 shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+    <section id="contact" class="contact-section py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
+                    <p class="section-subtitle">Chúng tôi luôn sẵn sàng hỗ trợ bạn</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="contact-form">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Họ và tên" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Tiêu đề">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Nội dung tin nhắn" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Gửi Tin Nhắn</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+    <footer class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="footer-title">
+                        <i class="fas fa-store me-2"></i>ShopAKA
+                    </h5>
+                    <p class="footer-text">
+                        Cửa hàng trực tuyến uy tín, cung cấp sản phẩm chất lượng cao 
+                        với giá cả hợp lý và dịch vụ khách hàng chuyên nghiệp.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Sản Phẩm</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Điện Thoại</a></li>
+                        <li><a href="#">Laptop</a></li>
+                        <li><a href="#">Phụ Kiện</a></li>
+                        <li><a href="#">Đồng Hồ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="footer-subtitle">Hỗ Trợ</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Trung Tâm Trợ Giúp</a></li>
+                        <li><a href="#">Chính Sách Bảo Hành</a></li>
+                        <li><a href="#">Chính Sách Đổi Trả</a></li>
+                        <li><a href="#">Liên Hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <h6 class="footer-subtitle">Thông Tin Liên Hệ</h6>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt me-2"></i>Ở đâu còn lâu mới nói</p>
+                        <p><i class="fas fa-phone me-2"></i>+84 5678910JQK</p>
+                        <p><i class="fas fa-envelope me-2"></i>shopaka@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+    </div>
+    </footer>

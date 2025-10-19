@@ -1,0 +1,580 @@
+﻿@{
+    ViewBag.Title = "ShopAKA - Thanh Toán";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Checkout.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="checkout-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <a href="@Url.Action("Cart", "Home")" class="back-btn me-3">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <h1 class="checkout-title">Thanh Toán</h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-end">
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Cart", "Home")">Giỏ hàng</a></li>
+                            <li class="breadcrumb-item active">Thanh toán</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container checkout-container">
+        <div class="progress-steps">
+            <div class="step completed" id="step-1">
+                <div class="step-number">1</div>
+                <div class="step-text">Thông tin giao hàng</div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step" id="step-2">
+                <div class="step-number">2</div>
+                <div class="step-text">Phương thức thanh toán</div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step" id="step-3">
+                <div class="step-number">3</div>
+                <div class="step-text">Xác nhận đơn hàng</div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step" id="step-4">
+                <div class="step-number">4</div>
+                <div class="step-text">Hoàn thành</div>
+            </div>
+        </div>
+
+        <div id="step1-content" class="step-content">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-truck me-2"></i>
+                                Thông Tin Giao Hàng
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Họ và tên *</label>
+                                        <input type="text" class="form-control" placeholder="Nhập họ và tên" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Số điện thoại *</label>
+                                        <input type="tel" class="form-control" placeholder="Nhập số điện thoại" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="Nhập email của bạn">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Tỉnh/Thành phố *</label>
+                                        <select class="form-select" required>
+                                            <option value="">Chọn tỉnh/thành phố</option>
+                                            <option value="hcm">TP. Hồ Chí Minh</option>
+                                            <option value="hn">Hà Nội</option>
+                                            <option value="dn">Đà Nẵng</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Vui lòng chọn tỉnh/thành phố
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Quận/Huyện *</label>
+                                        <select class="form-select" required>
+                                            <option value="">Chọn quận/huyện</option>
+                                            <option value="q1">Quận 1</option>
+                                            <option value="q2">Quận 2</option>
+                                            <option value="q3">Quận 3</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Vui lòng chọn quận/huyện
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Phường/Xã *</label>
+                                        <select class="form-select" required>
+                                            <option value="">Chọn phường/xã</option>
+                                            <option value="p1">Phường 1</option>
+                                            <option value="p2">Phường 2</option>
+                                            <option value="p3">Phường 3</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Vui lòng chọn phường/xã
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Địa chỉ chi tiết *</label>
+                                <input type="text" class="form-control" placeholder="Số nhà, tên đường..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Ghi chú</label>
+                                <textarea class="form-control" rows="3" placeholder="Ghi chú cho đơn hàng..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn-next" onclick="nextStep(2)">
+                            Tiếp theo <i class="fas fa-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="order-summary">
+                        <div class="summary-header">
+                            <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
+                        </div>
+                        
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="~/images/iphone.jpeg" alt="Apple Watch" class="order-item-image">
+                                <div class="order-item-info">
+                                    <h6 class="order-item-name">Apple Watch Series 9 GPS 45mm</h6>
+                                    <p class="order-item-specs">Màu: Midnight | Size: 45mm</p>
+                                    <div class="order-item-price">8.990.000₫</div>
+                                </div>
+                                <div class="order-item-quantity">Số lượng: 1</div>
+                            </div>
+
+                            <div class="order-item">
+                                <img src="~/images/chuotmaytinh.jpeg" alt="AirPods" class="order-item-image">
+                                <div class="order-item-info">
+                                    <h6 class="order-item-name">AirPods Pro 2nd Gen</h6>
+                                    <p class="order-item-specs">Màu: White | Size: One Size</p>
+                                    <div class="order-item-price">5.490.000₫</div>
+                                </div>
+                                <div class="order-item-quantity">Số lượng: 2</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-content">
+                            <div class="summary-row">
+                                <span class="summary-label">Tạm tính:</span>
+                                <span class="summary-value" id="subtotal">19.970.000₫</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Phí vận chuyển:</span>
+                                <span class="summary-value free">Miễn phí</span>
+                            </div>
+                            
+                            <div class="summary-divider"></div>
+                            
+                            <div class="summary-row total-row">
+                                <span class="summary-label">Tổng cộng:</span>
+                                <span class="summary-value total">19.970.000₫</span>
+                            </div>
+                        </div>
+
+                        <div class="security-info">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Thông tin được mã hóa SSL</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Thanh toán an toàn</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-truck"></i>
+                                <span>Giao hàng nhanh chóng</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="step2-content" class="step-content" style="display: none;">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-credit-card me-2"></i>
+                                Phương Thức Thanh Toán
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="payment-methods">
+                                <div class="payment-method selected" onclick="selectPaymentMethod(this)">
+                                    <input type="radio" name="paymentMethod" value="cod" checked>
+                                    <div class="method-content">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <div>
+                                            <span class="method-name">Thanh toán khi nhận hàng (COD)</span>
+                                            <span class="method-desc">Thanh toán bằng tiền mặt khi nhận hàng</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="payment-method" onclick="selectPaymentMethod(this)">
+                                    <input type="radio" name="paymentMethod" value="card">
+                                    <div class="method-content">
+                                        <i class="fas fa-credit-card"></i>
+                                        <div>
+                                            <span class="method-name">Thẻ tín dụng/ghi nợ</span>
+                                            <span class="method-desc">Thanh toán bằng thẻ Visa, Mastercard</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn-back" onclick="prevStep(1)">
+                            <i class="fas fa-arrow-left me-2"></i>Quay lại
+                        </button>
+                        <button class="btn-next" onclick="nextStep(3)">
+                            Tiếp theo <i class="fas fa-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="order-summary">
+                        <div class="summary-header">
+                            <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
+                        </div>
+                        
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="~/images/iphone.jpeg" alt="Apple Watch" class="order-item-image">
+                                <div class="order-item-info">
+                                    <h6 class="order-item-name">Apple Watch Series 9 GPS 45mm</h6>
+                                    <p class="order-item-specs">Màu: Midnight | Size: 45mm</p>
+                                    <div class="order-item-price">8.990.000₫</div>
+                                </div>
+                                <div class="order-item-quantity">Số lượng: 1</div>
+                            </div>
+
+                            <div class="order-item">
+                                <img src="~/images/chuotmaytinh.jpeg" alt="AirPods" class="order-item-image">
+                                <div class="order-item-info">
+                                    <h6 class="order-item-name">AirPods Pro 2nd Gen</h6>
+                                    <p class="order-item-specs">Màu: White | Size: One Size</p>
+                                    <div class="order-item-price">5.490.000₫</div>
+                                </div>
+                                <div class="order-item-quantity">Số lượng: 2</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-content">
+                            <div class="summary-row">
+                                <span class="summary-label">Tạm tính:</span>
+                                <span class="summary-value">19.970.000₫</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Phí vận chuyển:</span>
+                                <span class="summary-value free">Miễn phí</span>
+                            </div>
+                            
+                            <div class="summary-divider"></div>
+                            
+                            <div class="summary-row total-row">
+                                <span class="summary-label">Tổng cộng:</span>
+                                <span class="summary-value total">19.970.000₫</span>
+                            </div>
+                        </div>
+
+                        <div class="security-info">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Thông tin được mã hóa SSL</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Thanh toán an toàn</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-truck"></i>
+                                <span>Giao hàng nhanh chóng</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="step3-content" class="step-content" style="display: none;">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-check-circle me-2"></i>
+                                Xác Nhận Đơn Hàng
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="confirmation-section">
+                                <h5>Thông tin giao hàng</h5>
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <span class="info-label">Họ và tên:</span>
+                                        <span class="info-value">Anh ABC</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Số điện thoại:</span>
+                                        <span class="info-value">0123456789</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Email:</span>
+                                        <span class="info-value">a@gmail.com</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Địa chỉ:</span>
+                                        <span class="info-value">I don't know</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="confirmation-section">
+                                <h5>Phương thức thanh toán</h5>
+                                <div class="info-item">
+                                    <span class="info-label">Thanh toán:</span>
+                                    <span class="info-value">Thanh toán khi nhận hàng (COD)</span>
+                                </div>
+                            </div>
+
+                            <div class="confirmation-section">
+                                <h5>Sản phẩm đặt mua</h5>
+                                <div class="order-items">
+                                    <div class="order-item">
+                                        <img src="~/images/iphone.jpeg" alt="Apple Watch" class="order-item-image">
+                                        <div class="order-item-info">
+                                            <h6 class="order-item-name">Apple Watch Series 9 GPS 45mm</h6>
+                                            <p class="order-item-specs">Màu: Midnight | Size: 45mm</p>
+                                            <div class="order-item-price">8.990.000₫</div>
+                                        </div>
+                                        <div class="order-item-quantity">Số lượng: 1</div>
+                                    </div>
+
+                                    <div class="order-item">
+                                        <img src="~/images/chuotmaytinh.jpeg" alt="AirPods" class="order-item-image">
+                                        <div class="order-item-info">
+                                            <h6 class="order-item-name">AirPods Pro 2nd Gen</h6>
+                                            <p class="order-item-specs">Màu: White | Size: One Size</p>
+                                            <div class="order-item-price">5.490.000₫</div>
+                                        </div>
+                                        <div class="order-item-quantity">Số lượng: 2</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="order-summary">
+                        <div class="summary-header">
+                            <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
+                        </div>
+                        
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="~/images/iphone.jpeg" alt="Apple Watch" class="order-item-image">
+                                <div class="order-item-info">
+                                    <h6 class="order-item-name">Apple Watch Series 9 GPS 45mm</h6>
+                                    <p class="order-item-specs">Màu: Midnight | Size: 45mm</p>
+                                    <div class="order-item-price">8.990.000₫</div>
+                                </div>
+                                <div class="order-item-quantity">Số lượng: 1</div>
+                            </div>
+
+                            <div class="order-item">
+                                <img src="~/images/chuotmaytinh.jpeg" alt="AirPods" class="order-item-image">
+                                <div class="order-item-info">
+                                    <h6 class="order-item-name">AirPods Pro 2nd Gen</h6>
+                                    <p class="order-item-specs">Màu: White | Size: One Size</p>
+                                    <div class="order-item-price">5.490.000₫</div>
+                                </div>
+                                <div class="order-item-quantity">Số lượng: 2</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-content">
+                            <div class="summary-row">
+                                <span class="summary-label">Tạm tính:</span>
+                                <span class="summary-value">19.970.000₫</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Phí vận chuyển:</span>
+                                <span class="summary-value free">Miễn phí</span>
+                            </div>
+                            
+                            <div class="summary-divider"></div>
+                            
+                            <div class="summary-row total-row">
+                                <span class="summary-label">Tổng cộng:</span>
+                                <span class="summary-value total">19.970.000₫</span>
+                            </div>
+                        </div>
+
+                        <div class="security-info">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Thông tin được mã hóa SSL</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Thanh toán an toàn</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-truck"></i>
+                                <span>Giao hàng nhanh chóng</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn-back" onclick="prevStep(2)">
+                            <i class="fas fa-arrow-left me-2"></i>Quay lại
+                        </button>
+                        <button class="btn-confirm" onclick="nextStep(4)">
+                            <i class="fas fa-check me-2"></i>Xác nhận đơn hàng
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="step4-content" class="step-content" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="success-card">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2 class="success-title">Đặt hàng thành công!</h2>
+                        <p class="success-message">
+                            Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ xử lý đơn hàng và giao hàng trong thời gian sớm nhất.
+                        </p>
+                        
+                        <div class="order-details">
+                            <h5>Mã đơn hàng: #SHOPAKA-2024-001</h5>
+                            <p>Dự kiến giao hàng: 1-2 ngày làm việc</p>
+                        </div>
+
+                        <div class="success-actions">
+                            <button class="btn-primary" onclick="window.location.href='/Home/Index'">
+                                <i class="fas fa-home me-2"></i>Về trang chủ
+                            </button>
+                            <button class="btn-secondary" onclick="window.location.href='/Home/Cart'">
+                                <i class="fas fa-shopping-cart me-2"></i>Xem giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="order-summary">
+                        <div class="summary-header">
+                            <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
+                        </div>
+                        
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="~/images/iphone.jpeg" alt="Apple Watch" class="order-item-image">
+                                <div class="order-item-info">
+                                    <h6 class="order-item-name">Apple Watch Series 9 GPS 45mm</h6>
+                                    <p class="order-item-specs">Màu: Midnight | Size: 45mm</p>
+                                    <div class="order-item-price">8.990.000₫</div>
+                                </div>
+                                <div class="order-item-quantity">Số lượng: 1</div>
+                            </div>
+
+                            <div class="order-item">
+                                <img src="~/images/chuotmaytinh.jpeg" alt="AirPods" class="order-item-image">
+                                <div class="order-item-info">
+                                    <h6 class="order-item-name">AirPods Pro 2nd Gen</h6>
+                                    <p class="order-item-specs">Màu: White | Size: One Size</p>
+                                    <div class="order-item-price">5.490.000₫</div>
+                                </div>
+                                <div class="order-item-quantity">Số lượng: 2</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-content">
+                            <div class="summary-row">
+                                <span class="summary-label">Tạm tính:</span>
+                                <span class="summary-value">19.970.000₫</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Phí vận chuyển:</span>
+                                <span class="summary-value free">Miễn phí</span>
+                            </div>
+                            
+                            <div class="summary-divider"></div>
+                            
+                            <div class="summary-row total-row">
+                                <span class="summary-label">Tổng cộng:</span>
+                                <span class="summary-value total">19.970.000₫</span>
+                            </div>
+                        </div>
+
+                        <div class="security-info">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Thông tin được mã hóa SSL</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Thanh toán an toàn</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-truck"></i>
+                                <span>Giao hàng nhanh chóng</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Checkout.js"></script>
+</body>
+</html>
