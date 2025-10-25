@@ -1,0 +1,65 @@
+﻿# Ignore Visual Studio files
+.vs/
+.vscode/
+*.user
+*.suo
+*.rsuser
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+[Tt]emp/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# NuGet packages
+packages/
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+
+# Publish outputs
+publish/
+*.Publish.xml
+
+# Entity Framework
+Migrations/obj/
+Migrations/bin/
+
+# Database
+*.mdf
+*.ldf
+
+# Rider / ReSharper / JetBrains
+_ReSharper*/
+*.[Rr]e[Ss]harper
+.idea/
+
+# Backup and temp
+*~
+*.bak
+*.tmp
+*.cache
+*.swp
+
+# Node.js frontend
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Windows system
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
