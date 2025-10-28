@@ -1,0 +1,135 @@
+.product-detail-page {
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+.product-image-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.product-info-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 24px;
+}
+
+.feature-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.feature-btn {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 16px;
+    text-align: center;
+    flex: 1;
+    transition: all 0.2s ease;
+}
+
+.feature-btn:hover {
+    background: #f8f9fa;
+    border-color: #dee2e6;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background: white;
+}
+
+.quantity-btn {
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 18px;
+}
+
+.quantity-btn:hover {
+    background: #f8f9fa;
+    color: #495057;
+}
+
+.quantity-display {
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    min-width: 60px;
+    text-align: center;
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+}
+
+.buy-now-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 24px;
+    font-weight: 600;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-bottom: 12px;
+}
+
+.buy-now-btn:hover {
+    background: #218838;
+}
+
+.add-cart-btn {
+    background: white;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 16px 24px;
+    font-weight: 600;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-cart-btn:hover {
+    background: #f8f9fa;
+    border-color: #adb5bd;
+}
+
+.specifications-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 24px;
+    margin-top: 24px;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.spec-item:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.spec-value {
+    color: #6c757d;
+}

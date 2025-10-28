@@ -1,0 +1,228 @@
+﻿@{
+    ViewBag.Title = "Chi tiết sản phẩm - ShopAKA";
+    var product = ViewBag.Product as dynamic;
+}
+
+@functions {
+    public string GetSpecificationLabel(string specName)
+    {
+        switch (specName.ToLower())
+        {
+            case "display": return "Màn hình";
+            case "processor": return "Bộ xử lý";
+            case "storage": return "Bộ nhớ";
+            case "camera": return "Camera";
+            case "battery": return "Pin";
+            case "os": return "Hệ điều hành";
+            case "weight": return "Trọng lượng";
+            case "colors": return "Màu sắc";
+            case "memory": return "RAM";
+            case "graphics": return "Card đồ họa";
+            case "connectivity": return "Kết nối";
+            case "sensor": return "Cảm biến";
+            case "switches": return "Nút bấm";
+            case "response_time": return "Thời gian phản hồi";
+            case "acceleration": return "Gia tốc";
+            case "cable": return "Dây cáp";
+            case "software": return "Phần mềm";
+            case "warranty": return "Bảo hành";
+            case "compatibility": return "Tương thích";
+            case "ports": return "Cổng kết nối";
+            default: return specName;
+        }
+    }
+}
+
+@section Styles {
+    <link href="~/Content/ProductDetail.css" rel="stylesheet" />
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="product-detail-page">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+            <div style="text-align: center; padding: 60px 20px;">
+                <div style="width: 80px; height: 80px; background: #f8d7da; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 32px; color: #dc3545;"></i>
+                </div>
+                <h2 style="font-size: 24px; font-weight: bold; color: #212529; margin: 0 0 16px 0;">@ViewBag.Error</h2>
+                <a href="@Url.Action("Index", "Home")" style="display: inline-flex; align-items: center; gap: 8px; background: #007bff; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background 0.2s ease;">
+                    <i class="fas fa-arrow-left"></i>
+                    Quay lại trang chủ
+                </a>
+            </div>
+        </div>
+    </div>
+}
+else if (product != null)
+{
+    <div class="product-detail-page">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+            <button onclick="history.back()" style="background: none; border: none; color: #6c757d; margin-bottom: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-arrow-left"></i>
+                <span>Quay lại</span>
+            </button>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+                <div>
+                    <div class="product-image-card">
+                        @if (!string.IsNullOrEmpty(product.image.ToString()))
+                        {
+                            <img src="@product.image" alt="@product.name" style="width: 100%; height: 500px; object-fit: contain; background: #f8f9fa;" data-product-image />
+                        }
+                        else
+                        {
+                            <div style="width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; background: #f8f9fa;">
+                                <div style="text-align: center;">
+                                    <div style="width: 80px; height: 80px; background: #e9ecef; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                                        <span style="font-size: 32px;">📱</span>
+                                    </div>
+                                    <p style="color: #6c757d; font-size: 14px;">Chưa có hình ảnh</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="feature-buttons">
+                        <div class="feature-btn">
+                            <div style="font-size: 20px; margin-bottom: 8px;">🚚</div>
+                            <p style="margin: 0; font-size: 14px; font-weight: 500;">Giao hàng nhanh</p>
+                        </div>
+                        <div class="feature-btn">
+                            <div style="font-size: 20px; margin-bottom: 8px;"><i class="fas fa-shield-alt"></i></div>
+                            <p style="margin: 0; font-size: 14px; font-weight: 500;">Uy tín</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="product-info-card">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <h1 style="font-size: 24px; font-weight: bold; margin: 0; color: #212529;" data-product-name>@product.name</h1>
+                            @if (product.is_featured != null && (bool)product.is_featured)
+                            {
+                                <i class="fas fa-star" style="color: #ffc107; font-size: 20px;"></i>
+                            }
+                        </div>
+                        
+                        @if (product.category_name != null)
+                        {
+                            <div style="margin-bottom: 16px;">
+                                <span style="background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                                    @product.category_name
+                                </span>
+                            </div>
+                        }
+                        
+                        <div style="margin-bottom: 16px;">
+                            <p style="font-size: 28px; font-weight: bold; color: #28a745; margin: 0 0 4px 0;" data-product-price>
+                                @string.Format("{0:N0}", product.price) VND
+                            </p>
+                            <p style="color: #6c757d; font-size: 14px; margin: 0;">Giá đã bao gồm thuế</p>
+                        </div>
+
+                        @if (product.description != null)
+                        {
+                            <div style="margin-bottom: 24px;">
+                                <h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #212529;">Mô tả sản phẩm</h3>
+                                <p style="color: #495057; line-height: 1.6; margin: 0;">@product.description</p>
+                            </div>
+                        }
+
+                        <div style="margin-bottom: 24px;">
+                            <h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #212529;">Số lượng</h3>
+                            <div style="display: flex; align-items: center; gap: 24px;">
+                                <div class="quantity-selector">
+                                    <button onclick="decreaseQuantity()" class="quantity-btn">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span id="quantity" class="quantity-display">1</span>
+                                    <button onclick="increaseQuantity()" class="quantity-btn">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                
+                                <div style="color: #495057;">
+                                    <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px 0;">Tổng cộng:</p>
+                                    <p id="totalPrice" style="font-size: 20px; font-weight: bold; color: #28a745; margin: 0;">
+                                        @string.Format("{0:N0}", product.price) đồng
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button onclick="buyNow()" class="buy-now-btn">
+                                <i class="fas fa-bolt" style="margin-right: 8px;"></i>
+                                Mua ngay
+                            </button>
+                            
+                            <button onclick="addToCart()" class="add-cart-btn">
+                                <i class="fas fa-shopping-cart" style="margin-right: 8px;"></i>
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                        
+                        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e9ecef;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 8px; height: 8px; border-radius: 50%; @(product.is_available != null && (bool)product.is_available ? "background: #28a745;" : "background: #dc3545;")"></div>
+                                <span style="color: #495057; font-weight: 500; font-size: 14px;">
+                                    @if (product.is_available != null && (bool)product.is_available)
+                                    {
+                                        <text>Có sẵn - Giao hàng trong 30-45 phút</text>
+                                    }
+                                    else
+                                    {
+                                        <text>Tạm hết hàng</text>
+                                    }
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (product.specifications != null)
+            {
+                <div class="specifications-section">
+                    <h2 style="font-size: 24px; font-weight: bold; margin: 0 0 20px 0; color: #212529;">
+                        <i class="fas fa-cogs" style="color: #007bff; margin-right: 8px;"></i>
+                        Thông số kỹ thuật
+                    </h2>
+                    <div>
+                        @foreach (var spec in product.specifications)
+                        {
+                            <div class="spec-item">
+                                <span class="spec-label">@GetSpecificationLabel(spec.Name):</span>
+                                <span class="spec-value">@spec.Value</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div data-product-id="@product.id" style="display: none;"></div>
+    
+    @section Scripts {
+        <script src="~/Scripts/ProductDetail.js"></script>
+    }
+}
+else
+{
+    <div class="min-h-screen bg-white flex items-center justify-center">
+        <div class="text-center">
+            <div class="card p-8">
+                <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">❌</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Sản phẩm không tồn tại</h2>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary inline-flex items-center">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Quay lại trang chủ
+                </a>
+            </div>
+        </div>
+    </div>
+}

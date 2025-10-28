@@ -1,0 +1,905 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iPhone 15 Pro Max",
+      "price": 32990000,
+      "rating": 4.9,
+      "image": "/images/Iphone/iphone16promax.jpg",
+      "description": "iPhone 15 Pro Max với chip A17 Pro mạnh mẽ, camera 48MP chuyên nghiệp và màn hình Super Retina XDR 6.7 inch. Thiết kế titan cao cấp, chống nước IP68 và pin lâu dài.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": true,
+      "is_available": true,
+      "features": [
+        "Chip A17 Pro 3nm",
+        "Camera 48MP chính + 12MP ultra-wide + 12MP telephoto",
+        "Màn hình Super Retina XDR 6.7 inch",
+        "Thiết kế titan cao cấp",
+        "Chống nước IP68",
+        "Pin lâu dài 29 giờ video",
+        "USB-C với Thunderbolt 3",
+        "Face ID an toàn"
+      ],
+      "specifications": {
+        "display": "6.7 inch Super Retina XDR",
+        "processor": "A17 Pro chip",
+        "storage": "256GB",
+        "camera": "48MP + 12MP + 12MP",
+        "battery": "29 giờ video",
+        "os": "iOS 17",
+        "weight": "221g",
+        "colors": ["Titan tự nhiên", "Titan xanh", "Titan trắng", "Titan đen"]
+      }
+    },
+    {
+      "id": 2,
+      "name": "iPhone 15 Pro",
+      "price": 28990000,
+      "rating": 4.8,
+      "image": "/images/Iphone/iphone16.jpg",
+      "description": "iPhone 15 Pro với chip A17 Pro, camera 48MP và màn hình Super Retina XDR 6.1 inch. Thiết kế titan sang trọng, hiệu năng mạnh mẽ cho mọi tác vụ.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": true,
+      "is_available": true,
+      "features": [
+        "Chip A17 Pro 3nm",
+        "Camera 48MP chính + 12MP ultra-wide + 12MP telephoto",
+        "Màn hình Super Retina XDR 6.1 inch",
+        "Thiết kế titan cao cấp",
+        "Chống nước IP68",
+        "Pin lâu dài 23 giờ video",
+        "USB-C với Thunderbolt 3",
+        "Face ID an toàn"
+      ],
+      "specifications": {
+        "display": "6.1 inch Super Retina XDR",
+        "processor": "A17 Pro chip",
+        "storage": "128GB",
+        "camera": "48MP + 12MP + 12MP",
+        "battery": "23 giờ video",
+        "os": "iOS 17",
+        "weight": "187g",
+        "colors": ["Titan tự nhiên", "Titan xanh", "Titan trắng", "Titan đen"]
+      }
+    },
+    {
+      "id": 3,
+      "name": "iPhone 15",
+      "price": 22990000,
+      "rating": 4.7,
+      "image": "/images/Iphone/iphone15.jpg",
+      "description": "iPhone 15 với chip A16 Bionic, camera 48MP và màn hình Super Retina XDR 6.1 inch. Thiết kế nhôm cao cấp, hiệu năng ổn định và giá cả hợp lý.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Chip A16 Bionic",
+        "Camera 48MP chính + 12MP ultra-wide",
+        "Màn hình Super Retina XDR 6.1 inch",
+        "Thiết kế nhôm cao cấp",
+        "Chống nước IP68",
+        "Pin lâu dài 20 giờ video",
+        "USB-C",
+        "Face ID an toàn"
+      ],
+      "specifications": {
+        "display": "6.1 inch Super Retina XDR",
+        "processor": "A16 Bionic chip",
+        "storage": "128GB",
+        "camera": "48MP + 12MP",
+        "battery": "20 giờ video",
+        "os": "iOS 17",
+        "weight": "171g",
+        "colors": ["Hồng", "Vàng", "Xanh", "Đen", "Xanh lá"]
+      }
+    },
+    {
+      "id": 4,
+      "name": "iPhone 14 Pro",
+      "price": 24990000,
+      "rating": 4.6,
+      "image": "/images/Iphone/iphone14promax.jpg",
+      "description": "iPhone 14 Pro với chip A16 Bionic, camera 48MP và màn hình Super Retina XDR 6.1 inch. Thiết kế nhôm cao cấp và hiệu năng mạnh mẽ.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Chip A16 Bionic",
+        "Camera 48MP chính",
+        "Màn hình Super Retina XDR 6.1 inch",
+        "Thiết kế nhôm cao cấp",
+        "Chống nước IP68",
+        "Pin lâu dài 23 giờ video"
+      ],
+      "specifications": {
+        "display": "6.1 inch Super Retina XDR",
+        "processor": "A16 Bionic chip",
+        "storage": "128GB",
+        "camera": "48MP + 12MP + 12MP",
+        "battery": "23 giờ video",
+        "os": "iOS 16",
+        "weight": "206g"
+      }
+    },
+    {
+      "id": 5,
+      "name": "iPhone 15 Plus",
+      "price": 25990000,
+      "rating": 4.5,
+      "image": "/images/Iphone/iphone15promax.jpg",
+      "description": "iPhone 15 Plus với chip A16 Bionic, camera 48MP và màn hình Super Retina XDR 6.7 inch. Thiết kế nhôm cao cấp và pin lâu dài.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Chip A16 Bionic",
+        "Camera 48MP chính",
+        "Màn hình Super Retina XDR 6.7 inch",
+        "Thiết kế nhôm cao cấp",
+        "Chống nước IP68",
+        "Pin lâu dài 26 giờ video"
+      ],
+      "specifications": {
+        "display": "6.7 inch Super Retina XDR",
+        "processor": "A16 Bionic chip",
+        "storage": "128GB",
+        "camera": "48MP + 12MP",
+        "battery": "26 giờ video",
+        "os": "iOS 17",
+        "weight": "201g"
+      }
+    },
+    {
+      "id": 6,
+      "name": "iPhone 14",
+      "price": 19990000,
+      "rating": 4.4,
+      "image": "/images/Iphone/iphone14.jpg",
+      "description": "iPhone 14 với chip A15 Bionic, camera 12MP và màn hình Super Retina XDR 6.1 inch. Thiết kế nhôm cao cấp và giá cả hợp lý.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Chip A15 Bionic",
+        "Camera 12MP chính",
+        "Màn hình Super Retina XDR 6.1 inch",
+        "Thiết kế nhôm cao cấp",
+        "Chống nước IP68",
+        "Pin lâu dài 20 giờ video"
+      ],
+      "specifications": {
+        "display": "6.1 inch Super Retina XDR",
+        "processor": "A15 Bionic chip",
+        "storage": "128GB",
+        "camera": "12MP + 12MP",
+        "battery": "20 giờ video",
+        "os": "iOS 16",
+        "weight": "172g"
+      }
+    },
+    {
+      "id": 7,
+      "name": "iPhone 13 Pro Max",
+      "price": 21990000,
+      "rating": 4.3,
+      "image": "/images/Iphone/iphonesxmax.jpg",
+      "description": "iPhone 13 Pro Max với chip A15 Bionic, camera 12MP và màn hình Super Retina XDR 6.7 inch. Thiết kế nhôm cao cấp và hiệu năng ổn định.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Chip A15 Bionic",
+        "Camera 12MP chính",
+        "Màn hình Super Retina XDR 6.7 inch",
+        "Thiết kế nhôm cao cấp",
+        "Chống nước IP68",
+        "Pin lâu dài 28 giờ video"
+      ],
+      "specifications": {
+        "display": "6.7 inch Super Retina XDR",
+        "processor": "A15 Bionic chip",
+        "storage": "128GB",
+        "camera": "12MP + 12MP + 12MP",
+        "battery": "28 giờ video",
+        "os": "iOS 15",
+        "weight": "240g"
+      }
+    },
+    {
+      "id": 8,
+      "name": "iPhone 13",
+      "price": 17990000,
+      "rating": 4.2,
+      "image": "/images/Iphone/iphone11.jpg",
+      "description": "iPhone 13 với chip A15 Bionic, camera 12MP và màn hình Super Retina XDR 6.1 inch. Thiết kế nhôm cao cấp và giá cả hợp lý.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Chip A15 Bionic",
+        "Camera 12MP chính",
+        "Màn hình Super Retina XDR 6.1 inch",
+        "Thiết kế nhôm cao cấp",
+        "Chống nước IP68",
+        "Pin lâu dài 19 giờ video"
+      ],
+      "specifications": {
+        "display": "6.1 inch Super Retina XDR",
+        "processor": "A15 Bionic chip",
+        "storage": "128GB",
+        "camera": "12MP + 12MP",
+        "battery": "19 giờ video",
+        "os": "iOS 15",
+        "weight": "174g"
+      }
+    },
+    {
+      "id": 9,
+      "name": "iPhone 12 Pro",
+      "price": 19990000,
+      "rating": 4.1,
+      "image": "/images/Iphone/iphonex.jpg",
+      "description": "iPhone 12 Pro với chip A14 Bionic, camera 12MP và màn hình Super Retina XDR 6.1 inch. Thiết kế nhôm cao cấp và hiệu năng mạnh mẽ.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Chip A14 Bionic",
+        "Camera 12MP chính",
+        "Màn hình Super Retina XDR 6.1 inch",
+        "Thiết kế nhôm cao cấp",
+        "Chống nước IP68",
+        "Pin lâu dài 17 giờ video"
+      ],
+      "specifications": {
+        "display": "6.1 inch Super Retina XDR",
+        "processor": "A14 Bionic chip",
+        "storage": "128GB",
+        "camera": "12MP + 12MP + 12MP",
+        "battery": "17 giờ video",
+        "os": "iOS 14",
+        "weight": "189g"
+      }
+    },
+    {
+      "id": 10,
+      "name": "iPhone SE 3",
+      "price": 12990000,
+      "rating": 4.0,
+      "image": "/images/Iphone/iphone14pro.jpg",
+      "description": "iPhone SE 3 với chip A15 Bionic, camera 12MP và màn hình Retina HD 4.7 inch. Thiết kế compact và giá cả phải chăng.",
+      "category": "iPhone",
+      "category_name": "Điện thoại",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Chip A15 Bionic",
+        "Camera 12MP chính",
+        "Màn hình Retina HD 4.7 inch",
+        "Thiết kế compact",
+        "Chống nước IP67",
+        "Pin lâu dài 15 giờ video"
+      ],
+      "specifications": {
+        "display": "4.7 inch Retina HD",
+        "processor": "A15 Bionic chip",
+        "storage": "64GB",
+        "camera": "12MP",
+        "battery": "15 giờ video",
+        "os": "iOS 15",
+        "weight": "144g"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Logitech MX Master 3S",
+      "price": 2490000,
+      "rating": 4.9,
+      "image": "/images/ChuotMayTinh/Logitech MX Master 3S.jpg",
+      "description": "Chuột không dây cao cấp với công nghệ Darkfield 8000 DPI, pin 70 ngày và kết nối đa thiết bị. Thiết kế ergonomic hoàn hảo cho công việc chuyên nghiệp.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": true,
+      "is_available": true,
+      "features": [
+        "Công nghệ Darkfield 8000 DPI",
+        "Pin 70 ngày sử dụng",
+        "Kết nối đa thiết bị (3 thiết bị)",
+        "Thiết kế ergonomic",
+        "Nút cuộn MagSpeed",
+        "Kết nối USB-C",
+        "Tương thích Windows, Mac, Linux",
+        "Phần mềm Logi Options+"
+      ],
+      "specifications": {
+        "sensor": "Darkfield 8000 DPI",
+        "battery": "70 ngày",
+        "connectivity": "Bluetooth + USB receiver",
+        "buttons": "7 nút có thể lập trình",
+        "weight": "141g",
+        "compatibility": "Windows, Mac, Linux",
+        "warranty": "3 năm",
+        "colors": ["Đen", "Trắng", "Xám"]
+      }
+    },
+    {
+      "id": 12,
+      "name": "Razer DeathAdder V3",
+      "price": 1890000,
+      "rating": 4.8,
+      "image": "/images/ChuotMayTinh/Razer DeathAdder V3.jpg",
+      "description": "Chuột gaming chuyên nghiệp với sensor Focus Pro 30K DPI, switch optical gen-3 và thiết kế ergonomic cho game thủ. Hiệu năng vượt trội cho mọi thể loại game.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": true,
+      "is_available": true,
+      "features": [
+        "Sensor Focus Pro 30K DPI",
+        "Switch optical gen-3",
+        "Thiết kế ergonomic gaming",
+        "Tốc độ phản hồi 0.2ms",
+        "Tăng tốc 750 IPS",
+        "Dây USB-C siêu mềm",
+        "Tương thích Razer Synapse",
+        "Trọng lượng 59g siêu nhẹ"
+      ],
+      "specifications": {
+        "sensor": "Focus Pro 30K DPI",
+        "switches": "Optical gen-3",
+        "response_time": "0.2ms",
+        "acceleration": "750 IPS",
+        "weight": "59g",
+        "cable": "USB-C paracord",
+        "software": "Razer Synapse",
+        "warranty": "2 năm"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Apple Magic Mouse 2",
+      "price": 2190000,
+      "rating": 4.7,
+      "image": "/images/ChuotMayTinh/Apple Magic Mouse 2.jpg",
+      "description": "Chuột Apple Magic Mouse 2 với thiết kế đẹp mắt, cảm ứng đa điểm và pin sạc. Tương thích hoàn hảo với Mac và iPad.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Thiết kế đẹp mắt",
+        "Cảm ứng đa điểm",
+        "Pin sạc",
+        "Kết nối Bluetooth",
+        "Tương thích Mac và iPad",
+        "Thiết kế mỏng nhẹ"
+      ],
+      "specifications": {
+        "connectivity": "Bluetooth",
+        "battery": "Pin sạc",
+        "compatibility": "Mac, iPad",
+        "weight": "99g",
+        "warranty": "1 năm"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Corsair Dark Core RGB Pro",
+      "price": 1590000,
+      "rating": 4.6,
+      "image": "/images/ChuotMayTinh/Corsair Dark Core RGB Pro.jpg",
+      "description": "Chuột gaming Corsair Dark Core RGB Pro với đèn LED RGB, sensor 18000 DPI và pin 50 giờ. Thiết kế gaming chuyên nghiệp.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Sensor 18000 DPI",
+        "Đèn LED RGB",
+        "Pin 50 giờ",
+        "Kết nối không dây",
+        "Thiết kế gaming",
+        "Tương thích iCUE"
+      ],
+      "specifications": {
+        "sensor": "18000 DPI",
+        "battery": "50 giờ",
+        "connectivity": "Wireless + USB",
+        "weight": "133g",
+        "software": "iCUE",
+        "warranty": "2 năm"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Logitech G Pro X Superlight",
+      "price": 2290000,
+      "rating": 4.5,
+      "image": "/images/ChuotMayTinh/Logitech G Pro X Superlight.jpg",
+      "description": "Chuột gaming Logitech G Pro X Superlight với trọng lượng siêu nhẹ 63g, sensor HERO 25K DPI và pin 70 giờ. Hoàn hảo cho game thủ chuyên nghiệp.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Trọng lượng 63g",
+        "Sensor HERO 25K DPI",
+        "Pin 70 giờ",
+        "Kết nối không dây",
+        "Thiết kế gaming",
+        "Tương thích G HUB"
+      ],
+      "specifications": {
+        "sensor": "HERO 25K DPI",
+        "battery": "70 giờ",
+        "weight": "63g",
+        "connectivity": "Wireless",
+        "software": "G HUB",
+        "warranty": "2 năm"
+      }
+    },
+    {
+      "id": 16,
+      "name": "SteelSeries Rival 650",
+      "price": 1790000,
+      "rating": 4.4,
+      "image": "/images/ChuotMayTinh/SteelSeries Rival 650.jpg",
+      "description": "Chuột gaming SteelSeries Rival 650 với sensor TrueMove3+ 12000 DPI, pin 24 giờ và thiết kế ergonomic. Hiệu năng gaming vượt trội.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Sensor TrueMove3+ 12000 DPI",
+        "Pin 24 giờ",
+        "Thiết kế ergonomic",
+        "Kết nối không dây",
+        "Thiết kế gaming",
+        "Tương thích SteelSeries Engine"
+      ],
+      "specifications": {
+        "sensor": "TrueMove3+ 12000 DPI",
+        "battery": "24 giờ",
+        "weight": "121g",
+        "connectivity": "Wireless + USB",
+        "software": "SteelSeries Engine",
+        "warranty": "2 năm"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Microsoft Surface Precision",
+      "price": 1990000,
+      "rating": 4.3,
+      "image": "/images/ChuotMayTinh/Microsoft Surface Precision.jpg",
+      "description": "Chuột Microsoft Surface Precision với thiết kế cao cấp, kết nối Bluetooth và pin 3 tháng. Tương thích hoàn hảo với Surface và Windows.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Thiết kế cao cấp",
+        "Pin 3 tháng",
+        "Kết nối Bluetooth",
+        "Tương thích Surface",
+        "Thiết kế ergonomic",
+        "Tương thích Windows"
+      ],
+      "specifications": {
+        "battery": "3 tháng",
+        "connectivity": "Bluetooth",
+        "compatibility": "Surface, Windows",
+        "weight": "135g",
+        "warranty": "1 năm"
+      }
+    },
+    {
+      "id": 18,
+      "name": "ASUS ROG Gladius III",
+      "price": 1390000,
+      "rating": 4.2,
+      "image": "/images/ChuotMayTinh/ASUS ROG Gladius III.jpg",
+      "description": "Chuột gaming ASUS ROG Gladius III với sensor 19000 DPI, switch có thể thay thế và thiết kế RGB. Hiệu năng gaming mạnh mẽ.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Sensor 19000 DPI",
+        "Switch có thể thay thế",
+        "Thiết kế RGB",
+        "Kết nối có dây",
+        "Thiết kế gaming",
+        "Tương thích Armoury Crate"
+      ],
+      "specifications": {
+        "sensor": "19000 DPI",
+        "switches": "Có thể thay thế",
+        "connectivity": "USB",
+        "weight": "89g",
+        "software": "Armoury Crate",
+        "warranty": "2 năm"
+      }
+    },
+    {
+      "id": 19,
+      "name": "HyperX Pulsefire Haste",
+      "price": 890000,
+      "rating": 4.1,
+      "image": "/images/ChuotMayTinh/HyperX Pulsefire Haste.jpg",
+      "description": "Chuột gaming HyperX Pulsefire Haste với trọng lượng nhẹ 59g, sensor 16000 DPI và thiết kế honeycomb. Giá cả hợp lý cho game thủ.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Trọng lượng 59g",
+        "Sensor 16000 DPI",
+        "Thiết kế honeycomb",
+        "Kết nối có dây",
+        "Thiết kế gaming",
+        "Giá cả hợp lý"
+      ],
+      "specifications": {
+        "sensor": "16000 DPI",
+        "weight": "59g",
+        "connectivity": "USB",
+        "warranty": "2 năm"
+      }
+    },
+    {
+      "id": 20,
+      "name": "Zowie EC2-C",
+      "price": 1190000,
+      "rating": 4.0,
+      "image": "/images/ChuotMayTinh/Zowie EC2-C.jpg",
+      "description": "Chuột gaming Zowie EC2-C với thiết kế ergonomic, sensor 3200 DPI và không cần driver. Được game thủ chuyên nghiệp tin dùng.",
+      "category": "mouse",
+      "category_name": "Chuột máy tính",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Thiết kế ergonomic",
+        "Sensor 3200 DPI",
+        "Không cần driver",
+        "Kết nối có dây",
+        "Thiết kế gaming",
+        "Được game thủ tin dùng"
+      ],
+      "specifications": {
+        "sensor": "3200 DPI",
+        "weight": "70g",
+        "connectivity": "USB",
+        "warranty": "2 năm"
+      }
+    },
+    {
+      "id": 21,
+      "name": "MacBook Pro 16\" M3 Max",
+      "price": 89990000,
+      "rating": 4.9,
+      "image": "/images/LapTop/macbook16por.jpg",
+      "description": "MacBook Pro 16 inch với chip M3 Max mạnh mẽ nhất, màn hình Liquid Retina XDR 16.2 inch và hiệu năng vượt trội. Hoàn hảo cho công việc chuyên nghiệp và sáng tạo.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": true,
+      "is_available": true,
+      "features": [
+        "Chip M3 Max 16-core CPU + 40-core GPU",
+        "Màn hình Liquid Retina XDR 16.2 inch",
+        "Pin lâu dài 22 giờ",
+        "Thiết kế nhôm nguyên khối",
+        "Kết nối Thunderbolt 4",
+        "Hệ thống âm thanh 6 loa",
+        "Touch ID bảo mật",
+        "macOS Sonoma"
+      ],
+      "specifications": {
+        "display": "16.2 inch Liquid Retina XDR",
+        "processor": "M3 Max 16-core",
+        "graphics": "40-core GPU",
+        "memory": "36GB unified memory",
+        "storage": "1TB SSD",
+        "battery": "22 giờ",
+        "weight": "2.16kg",
+        "ports": "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3"
+      }
+    },
+    {
+      "id": 22,
+      "name": "Dell XPS 15",
+      "price": 45990000,
+      "rating": 4.8,
+      "image": "/images/LapTop/DellXPS15.jpg",
+      "description": "Dell XPS 15 với Intel Core i7 thế hệ 13, màn hình 15.6 inch 4K OLED và card đồ họa RTX 4060. Laptop cao cấp cho công việc chuyên nghiệp và giải trí.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": true,
+      "is_available": true,
+      "features": [
+        "Intel Core i7-13700H",
+        "Màn hình 15.6 inch 4K OLED",
+        "NVIDIA RTX 4060 8GB",
+        "RAM 32GB DDR5",
+        "SSD 1TB PCIe Gen4",
+        "Thiết kế nhôm cao cấp",
+        "Pin lâu dài 12 giờ",
+        "Windows 11 Pro"
+      ],
+      "specifications": {
+        "display": "15.6 inch 4K OLED",
+        "processor": "Intel Core i7-13700H",
+        "graphics": "NVIDIA RTX 4060 8GB",
+        "memory": "32GB DDR5",
+        "storage": "1TB PCIe Gen4 SSD",
+        "battery": "12 giờ",
+        "weight": "1.84kg",
+        "os": "Windows 11 Pro"
+      }
+    },
+    {
+      "id": 23,
+      "name": "ASUS ROG Strix G15",
+      "price": 32990000,
+      "rating": 4.7,
+      "image": "/images/LapTop/ASUSROGStrixG15.jpg",
+      "description": "ASUS ROG Strix G15 laptop gaming với AMD Ryzen 7, màn hình 15.6 inch 144Hz và card đồ họa RTX 4060. Hiệu năng gaming mạnh mẽ với thiết kế RGB đẹp mắt.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "AMD Ryzen 7 6800H",
+        "Màn hình 15.6 inch 144Hz",
+        "NVIDIA RTX 4060 8GB",
+        "RAM 16GB DDR5",
+        "SSD 512GB PCIe Gen4",
+        "Thiết kế RGB gaming",
+        "Pin 90Wh",
+        "Windows 11 Home"
+      ],
+      "specifications": {
+        "display": "15.6 inch FHD 144Hz",
+        "processor": "AMD Ryzen 7 6800H",
+        "graphics": "NVIDIA RTX 4060 8GB",
+        "memory": "16GB DDR5",
+        "storage": "512GB PCIe Gen4 SSD",
+        "battery": "90Wh",
+        "weight": "2.3kg",
+        "os": "Windows 11 Home"
+      }
+    },
+    {
+      "id": 24,
+      "name": "HP Spectre x360",
+      "price": 38990000,
+      "rating": 4.6,
+      "image": "/images/LapTop/HPSpectre.jpg",
+      "description": "HP Spectre x360 laptop 2-in-1 cao cấp với Intel Core i7, màn hình 13.5 inch 3K2K và thiết kế xoay 360 độ. Laptop đa năng cho công việc và giải trí.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Intel Core i7-1260P",
+        "Màn hình 13.5 inch 3K2K",
+        "Thiết kế 2-in-1 xoay 360°",
+        "RAM 16GB LPDDR4X",
+        "SSD 1TB PCIe Gen4",
+        "Thiết kế nhôm cao cấp",
+        "Pin lâu dài 17 giờ",
+        "Windows 11 Pro"
+      ],
+      "specifications": {
+        "display": "13.5 inch 3K2K OLED",
+        "processor": "Intel Core i7-1260P",
+        "graphics": "Intel Iris Xe",
+        "memory": "16GB LPDDR4X",
+        "storage": "1TB PCIe Gen4 SSD",
+        "battery": "17 giờ",
+        "weight": "1.4kg",
+        "os": "Windows 11 Pro"
+      }
+    },
+    {
+      "id": 25,
+      "name": "Lenovo ThinkPad X1 Carbon",
+      "price": 42990000,
+      "rating": 4.5,
+      "image": "/images/LapTop/LenovoThinkPadCarbon.jpg",
+      "description": "Lenovo ThinkPad X1 Carbon laptop doanh nhân cao cấp với Intel Core i7, màn hình 14 inch 4K và bàn phím ThinkPad huyền thoại. Laptop chuyên nghiệp cho doanh nhân.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Intel Core i7-1260P",
+        "Màn hình 14 inch 4K",
+        "Bàn phím ThinkPad huyền thoại",
+        "RAM 16GB LPDDR5",
+        "SSD 1TB PCIe Gen4",
+        "Thiết kế carbon fiber",
+        "Pin lâu dài 15 giờ",
+        "Windows 11 Pro"
+      ],
+      "specifications": {
+        "display": "14 inch 4K IPS",
+        "processor": "Intel Core i7-1260P",
+        "graphics": "Intel Iris Xe",
+        "memory": "16GB LPDDR5",
+        "storage": "1TB PCIe Gen4 SSD",
+        "battery": "15 giờ",
+        "weight": "1.12kg",
+        "os": "Windows 11 Pro"
+      }
+    },
+    {
+      "id": 26,
+      "name": "MSI GE76 Raider",
+      "price": 55990000,
+      "rating": 4.4,
+      "image": "/images/LapTop/MSIGE76Raider.jpg",
+      "description": "MSI GE76 Raider laptop gaming flagship với Intel Core i9, màn hình 17.3 inch 4K 144Hz và card đồ họa RTX 4080. Laptop gaming mạnh nhất cho game thủ chuyên nghiệp.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": true,
+      "is_available": true,
+      "features": [
+        "Intel Core i9-12900HX",
+        "Màn hình 17.3 inch 4K 144Hz",
+        "NVIDIA RTX 4080 16GB",
+        "RAM 32GB DDR5",
+        "SSD 2TB PCIe Gen4",
+        "Thiết kế RGB gaming",
+        "Pin 99.9Wh",
+        "Windows 11 Home"
+      ],
+      "specifications": {
+        "display": "17.3 inch 4K 144Hz",
+        "processor": "Intel Core i9-12900HX",
+        "graphics": "NVIDIA RTX 4080 16GB",
+        "memory": "32GB DDR5",
+        "storage": "2TB PCIe Gen4 SSD",
+        "battery": "99.9Wh",
+        "weight": "2.9kg",
+        "os": "Windows 11 Home"
+      }
+    },
+    {
+      "id": 27,
+      "name": "MacBook Air M3",
+      "price": 32990000,
+      "rating": 4.3,
+      "image": "/images/LapTop/MacBookAijeg.jpg",
+      "description": "MacBook Air M3 laptop siêu mỏng với chip Apple M3 mạnh mẽ, màn hình 13.6 inch Liquid Retina và pin lâu dài 18 giờ. Laptop hoàn hảo cho sinh viên và văn phòng.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Apple M3 chip",
+        "Màn hình 13.6 inch Liquid Retina",
+        "RAM 8GB unified memory",
+        "SSD 256GB",
+        "Thiết kế nhôm nguyên khối",
+        "Pin lâu dài 18 giờ",
+        "macOS Ventura",
+        "Không quạt tản nhiệt"
+      ],
+      "specifications": {
+        "display": "13.6 inch Liquid Retina",
+        "processor": "Apple M3",
+        "graphics": "8-core GPU",
+        "memory": "8GB unified memory",
+        "storage": "256GB SSD",
+        "battery": "18 giờ",
+        "weight": "1.24kg",
+        "os": "macOS Ventura"
+      }
+    },
+    {
+      "id": 28,
+      "name": "Acer Predator Helios 300",
+      "price": 27990000,
+      "rating": 4.2,
+      "image": "/images/LapTop/AcerHelios300.jpg",
+      "description": "Acer Predator Helios 300 laptop gaming với Intel Core i7, màn hình 15.6 inch 144Hz và card đồ họa RTX 4060. Laptop gaming giá tốt với hiệu năng mạnh mẽ.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Intel Core i7-12700H",
+        "Màn hình 15.6 inch 144Hz",
+        "NVIDIA RTX 4060 8GB",
+        "RAM 16GB DDR4",
+        "SSD 512GB PCIe Gen4",
+        "Thiết kế gaming RGB",
+        "Pin 90Wh",
+        "Windows 11 Home"
+      ],
+      "specifications": {
+        "display": "15.6 inch FHD 144Hz",
+        "processor": "Intel Core i7-12700H",
+        "graphics": "NVIDIA RTX 4060 8GB",
+        "memory": "16GB DDR4",
+        "storage": "512GB PCIe Gen4 SSD",
+        "battery": "90Wh",
+        "weight": "2.4kg",
+        "os": "Windows 11 Home"
+      }
+    },
+    {
+      "id": 29,
+      "name": "Surface Laptop 5",
+      "price": 35990000,
+      "rating": 4.1,
+      "image": "/images/LapTop/SurfaceLaptop5.jpg",
+      "description": "Microsoft Surface Laptop 5 laptop cao cấp với Intel Core i7, màn hình 13.5 inch PixelSense và thiết kế nhôm sang trọng. Laptop Microsoft chính hãng cho doanh nhân.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "Intel Core i7-1255U",
+        "Màn hình 13.5 inch PixelSense",
+        "Thiết kế nhôm cao cấp",
+        "RAM 16GB LPDDR5",
+        "SSD 512GB PCIe Gen4",
+        "Pin lâu dài 19 giờ",
+        "Windows 11 Home",
+        "Touchscreen"
+      ],
+      "specifications": {
+        "display": "13.5 inch PixelSense",
+        "processor": "Intel Core i7-1255U",
+        "graphics": "Intel Iris Xe",
+        "memory": "16GB LPDDR5",
+        "storage": "512GB PCIe Gen4 SSD",
+        "battery": "19 giờ",
+        "weight": "1.27kg",
+        "os": "Windows 11 Home"
+      }
+    },
+    {
+      "id": 30,
+      "name": "ASUS ZenBook 14",
+      "price": 22990000,
+      "rating": 4.0,
+      "image": "/images/LapTop/ASUSZenBook14.jpg",
+      "description": "ASUS ZenBook 14 laptop văn phòng với AMD Ryzen 5, màn hình 14 inch FHD và thiết kế mỏng nhẹ. Laptop văn phòng giá tốt với hiệu năng ổn định.",
+      "category": "laptop",
+      "category_name": "Laptop",
+      "is_featured": false,
+      "is_available": true,
+      "features": [
+        "AMD Ryzen 5 5500U",
+        "Màn hình 14 inch FHD",
+        "Thiết kế mỏng nhẹ",
+        "RAM 8GB DDR4",
+        "SSD 256GB PCIe Gen3",
+        "Pin lâu dài 12 giờ",
+        "Windows 11 Home",
+        "Bàn phím backlit"
+      ],
+      "specifications": {
+        "display": "14 inch FHD IPS",
+        "processor": "AMD Ryzen 5 5500U",
+        "graphics": "AMD Radeon Graphics",
+        "memory": "8GB DDR4",
+        "storage": "256GB PCIe Gen3 SSD",
+        "battery": "12 giờ",
+        "weight": "1.39kg",
+        "os": "Windows 11 Home"
+      }
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+﻿@{
+    ViewBag.Title = "ShopAKA - Giỏ Hàng";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Cart.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="cart-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <a href="@Url.Action("Index", "Home")" class="back-btn me-3">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <h1 class="cart-title">Giỏ Hàng</h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-end">
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Giỏ hàng</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container cart-container">
+        <div id="cartContent">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="cart-section">
+                        <div class="section-header">
+                            <h3 class="section-title">
+                                <i class="fas fa-shopping-cart me-2"></i>
+                                Sản phẩm trong giỏ hàng
+                            </h3>
+                            <span class="item-count">(3 sản phẩm)</span>
+                        </div>
+
+                        <div class="cart-items">
+                            <div class="cart-item">
+                                <div class="item-checkbox">
+                                    <input type="checkbox" class="form-check-input" checked>
+                                </div>
+                                <div class="item-image">
+                                    <img src="~/images/iphone.jpeg" alt="iPhone" class="product-image">
+                                </div>
+                                <div class="item-details">
+                                    <h5 class="item-name">iPhone 15 Pro Max 256GB</h5>
+                                    <p class="item-specs">Màu: Titan Xanh | Dung lượng: 256GB</p>
+                                    <div class="item-price">
+                                        <span class="current-price">29.990.000₫</span>
+                                        <span class="old-price">32.990.000₫</span>
+                                    </div>
+                                </div>
+                                <div class="item-quantity">
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" onclick="updateQuantity(1, -1)">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span class="quantity-display" id="qty-1">1</span>
+                                        <button class="quantity-btn" onclick="updateQuantity(1, 1)">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="item-total">
+                                    <span class="total-price" id="total-1">29.990.000₫</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="action-btn save" onclick="saveForLater(1)" title="Lưu để mua sau">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn remove" onclick="removeItem(1)" title="Xóa khỏi giỏ hàng">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="cart-item">
+                                <div class="item-checkbox">
+                                    <input type="checkbox" class="form-check-input" checked>
+                                </div>
+                                <div class="item-image">
+                                    <img src="~/images/chuotmaytinh.jpeg" alt="Chuột máy tính" class="product-image">
+                                </div>
+                                <div class="item-details">
+                                    <h5 class="item-name">Logitech MX Master 3S</h5>
+                                    <p class="item-specs">Màu: Đen | Kết nối: Bluetooth</p>
+                                    <div class="item-price">
+                                        <span class="current-price">2.490.000₫</span>
+                                        <span class="old-price">2.990.000₫</span>
+                                    </div>
+                                </div>
+                                <div class="item-quantity">
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" onclick="updateQuantity(2, -1)">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span class="quantity-display" id="qty-2">2</span>
+                                        <button class="quantity-btn" onclick="updateQuantity(2, 1)">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="item-total">
+                                    <span class="total-price" id="total-2">4.980.000₫</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="action-btn save" onclick="saveForLater(2)" title="Lưu để mua sau">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn remove" onclick="removeItem(2)" title="Xóa khỏi giỏ hàng">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="cart-item">
+                                <div class="item-checkbox">
+                                    <input type="checkbox" class="form-check-input" checked>
+                                </div>
+                                <div class="item-image">
+                                    <img src="~/images/laptap.jpg" alt="Laptop" class="product-image">
+                                </div>
+                                <div class="item-details">
+                                    <h5 class="item-name">MacBook Pro 14" M3 Pro</h5>
+                                    <p class="item-specs">Màu: Bạc | RAM: 18GB | SSD: 512GB</p>
+                                    <div class="item-price">
+                                        <span class="current-price">45.990.000₫</span>
+                                    </div>
+                                    <span class="badge out-of-stock">Hết hàng</span>
+                                </div>
+                                <div class="item-quantity">
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" onclick="updateQuantity(3, -1)" disabled>
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span class="quantity-display" id="qty-3">1</span>
+                                        <button class="quantity-btn" onclick="updateQuantity(3, 1)" disabled>
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="item-total">
+                                    <span class="total-price" id="total-3">45.990.000₫</span>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="action-btn save" onclick="saveForLater(3)" title="Lưu để mua sau">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <button class="action-btn remove" onclick="removeItem(3)" title="Xóa khỏi giỏ hàng">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="saved-section">
+                            <div class="section-header">
+                                <h3 class="section-title">
+                                    <i class="fas fa-bookmark me-2"></i>
+                                    Đã lưu để mua sau
+                                </h3>
+                                <span class="item-count">(1 sản phẩm)</span>
+                            </div>
+                            <div class="saved-items">
+                                <div class="cart-item">
+                                    <div class="item-image">
+                                        <img src="~/images/iphone.jpeg" alt="AirPods" class="product-image">
+                                    </div>
+                                    <div class="item-details">
+                                        <h5 class="item-name">AirPods Pro 2nd Gen</h5>
+                                        <p class="item-specs">Màu: Trắng | Kết nối: Lightning</p>
+                                        <div class="item-price">
+                                            <span class="current-price">5.490.000₫</span>
+                                            <span class="old-price">6.490.000₫</span>
+                                        </div>
+                                    </div>
+                                    <div class="item-quantity">
+                                        <span class="quantity-text">x1</span>
+                                    </div>
+                                    <div class="item-total">
+                                        <span class="total-price">5.490.000₫</span>
+                                    </div>
+                                    <div class="item-actions">
+                                        <button class="btn-add-to-cart" onclick="addToCart(4)">
+                                            <i class="fas fa-shopping-cart me-1"></i>
+                                            Thêm vào giỏ
+                                        </button>
+                                        <button class="action-btn remove" onclick="removeSaved(4)" title="Xóa khỏi danh sách">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="order-summary">
+                        <div class="summary-header">
+                            <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
+                        </div>
+                        
+                        <div class="summary-content">
+                            <div class="summary-row">
+                                <span class="summary-label">Tạm tính:</span>
+                                <span class="summary-value" id="subtotal">80.960.000₫</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Giảm giá:</span>
+                                <span class="summary-value discount" id="discount">-3.000.000₫</span>
+                            </div>
+                            
+                            <div class="summary-row">
+                                <span class="summary-label">Phí vận chuyển:</span>
+                                <span class="summary-value free" id="shipping">Miễn phí</span>
+                            </div>
+                            
+                            <div class="summary-divider"></div>
+                            
+                            <div class="summary-row total-row">
+                                <span class="summary-label">Tổng cộng:</span>
+                                <span class="summary-value total" id="total">77.960.000₫</span>
+                            </div>
+                        </div>
+
+                        <div class="shipping-info">
+                            <i class="fas fa-truck"></i>
+                            <span>Bạn đã được miễn phí vận chuyển cho đơn hàng này!</span>
+                        </div>
+
+                        <div class="checkout-actions">
+                            <button class="checkout-btn" onclick="proceedToCheckout()">
+                                <i class="fas fa-credit-card me-2"></i>
+                                Thanh Toán Ngay
+                            </button>
+                            <button class="continue-btn" onclick="continueShopping()">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                Tiếp Tục Mua Sắm
+                            </button>
+                        </div>
+
+                        <div class="security-info">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Thanh toán an toàn</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-truck"></i>
+                                <span>Giao hàng nhanh chóng</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-undo"></i>
+                                <span>Đổi trả dễ dàng</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="emptyCart" class="empty-cart" style="display: none;">
+            <div class="empty-cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h4>Giỏ hàng trống</h4>
+            <p>Bạn chưa có sản phẩm nào trong giỏ hàng</p>
+            <button class="checkout-btn" onclick="continueShopping()">
+                <i class="fas fa-shopping-bag me-2"></i>
+                Tiếp Tục Mua Sắm
+            </button>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Cart.js"></script>
+</body>
+</html>

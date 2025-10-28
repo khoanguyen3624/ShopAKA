@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ShopAKA</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="~/Content/site.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="#">
+                    <i class="fas fa-store me-2"></i>ShopAKA
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#products">Sản Phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Giới Thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Liên Hệ</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="d-flex">
+                        <div class="search-box me-3">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                            <button class="btn btn-outline-light">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <button class="btn btn-outline-light me-2">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge bg-danger">0</span>
+                        </button>
+                        <button class="btn btn-success me-2">
+                            <i class="fas fa-credit-card me-1"></i>Thanh toán
+                        </button>
+                        <button class="btn btn-outline-light">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-navbar py-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <nav class="category-nav">
+                                <ul class="category-list">
+                                    <li><a href="#iphone" class="category-link active">iPhone</a></li>
+                                    <li><a href="#ipad" class="category-link">iPad</a></li>
+                                    <li><a href="#mac" class="category-link">Mac</a></li>
+                                    <li><a href="#watch" class="category-link">Watch</a></li>
+                                    <li><a href="#phukien" class="category-link">Phụ kiện</a></li>
+                                    <li><a href="#amthanh" class="category-link">Âm thanh</a></li>
+                                    <li><a href="#camera" class="category-link">Camera</a></li>
+                                    <li><a href="#giadung" class="category-link">Gia dụng</a></li>
+                                    <li><a href="#mayluot" class="category-link">Máy lướt</a></li>
+                                    <li><a href="#tintuc" class="category-link">Tin Tức</a></li>
+                                    <li><a href="#dichvu" class="category-link">Dịch vụ <i class="fas fa-chevron-down ms-1"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/site.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
