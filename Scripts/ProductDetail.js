@@ -109,6 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const idElement = document.querySelector('[data-product-id]');
     
     if (priceElement && idElement) {
-        initProductDetail(parseInt(priceElement.textContent), parseInt(idElement.textContent));
+        initProductDetail(
+            parseInt(priceElement.textContent.replace(/[^\d]/g, '')),
+            parseInt(idElement.textContent)
+        );
     }
 });
