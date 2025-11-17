@@ -1,0 +1,50 @@
+﻿@model ShopAKA.Models.User
+
+@{
+    ViewBag.Title = "Xóa người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+}
+
+<div class="category-header">
+    <h2><i class="fa fa-user-times"></i> Xóa người dùng</h2>
+</div>
+
+<div class="category-delete-container">
+    @if (ViewBag.HasRelatedCustomers == true)
+    {
+        <div class="alert alert-danger-custom" role="alert">
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Cảnh báo!</strong> Không thể xóa tài khoản này vì có <strong>@ViewBag.CustomerCount</strong> khách hàng liên quan.
+        </div>
+    }
+
+    <h3 style="color: #dc3545; margin-bottom: 20px;">Bạn có chắc chắn muốn xóa tài khoản này?</h3>
+
+    <div class="delete-info">
+        <dl class="dl-horizontal">
+            <dt>Tên đăng nhập:</dt>
+            <dd>@Html.DisplayFor(model => model.Username)</dd>
+
+            <dt>Vai trò:</dt>
+            <dd>
+                <span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                    Quản trị viên
+                </span>
+            </dd>
+        </dl>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions">
+            <input type="submit" value="Xóa" class="btn-submit btn-delete-confirm" @(ViewBag.HasRelatedCustomers == true ? "disabled" : "") />
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn-cancel" })
+        </div>
+    }
+</div>

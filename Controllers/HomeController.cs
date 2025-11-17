@@ -42,8 +42,14 @@ namespace ShopAKA.Controllers
             return View();
         }
 
-        public ActionResult ProductDetail(int id)
+        public ActionResult ProductDetail(int id=0)
         {
+            if (id == 0)
+            {
+                ViewBag.Error = "Thiếu mã sản phẩm (id)";
+                return View();
+            }
+
             try
             {
                 string jsonPath = Server.MapPath("~/App_Data/products.json");

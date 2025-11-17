@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ShopAKA.Models.Product>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table category-table">
+        <thead>
+            <tr>
+                <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng tồn</th>
+                <th>Danh mục</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var stockQuantity = item.StockQuantity;
+                <tr data-product-id="@item.ProductID">
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ProductImage))
+                        {
+                            <img src="@item.ProductImage" alt="@item.ProductName" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;" />
+                        }
+                        else
+                        {
+                            <div style="width: 80px; height: 80px; background: #e9ecef; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fa fa-image" style="color: #adb5bd;"></i>
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        <span class="category-name">@Html.DisplayFor(modelItem => item.ProductName)</span>
+                    </td>
+                    <td>
+                        <span style="color: #28a745; font-weight: 600;">@string.Format("{0:N0}", item.ProductPrice) đ</span>
+                    </td>
+                    <td class="stock-cell">
+                        @{
+                            var stockBgColor = stockQuantity > 0 ? "#d4edda" : "#f8d7da";
+                            var stockTextColor = stockQuantity > 0 ? "#155724" : "#721c24";
+                        }
+                        <span class="stock-display" data-product-id="@item.ProductID" style="background: @stockBgColor; color: @stockTextColor; padding: 4px 12px; border-radius: 16px; display: inline-block;">
+                            @stockQuantity sản phẩm
+                        </span>
+                    </td>
+                    <td>
+                        @if (item.Category != null)
+                        {
+                            <span style="background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                                @item.Category.CategoryName
+                            </span>
+                        }
+                    </td>
+                    <td class="action-buttons">
+                        <button class="btn-update-stock" data-product-id="@item.ProductID" data-product-name="@item.ProductName" data-current-stock="@stockQuantity">Cập nhật</button>
+                        @Html.ActionLink("Chi tiết", "Details", "Products", new { id = item.ProductID }, new { @class = "btn-custom btn-details" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="empty-state">
+        <i class="fa fa-inbox"></i>
+        <p>Không có sản phẩm nào</p>
+    </div>
+}
+

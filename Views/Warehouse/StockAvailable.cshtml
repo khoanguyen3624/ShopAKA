@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Quản lý kho hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var productsInStock = ViewBag.ProductsInStock as IEnumerable<ShopAKA.Models.Product>;
+    var productsOutOfStock = ViewBag.ProductsOutOfStock as IEnumerable<ShopAKA.Models.Product>;
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+    <link href="~/Content/Warehouse.css" rel="stylesheet" />
+}
+
+<div class="category-header" data-update-stock-url="@Url.Action("UpdateStockQuantity", "Warehouse")">
+    <h2><i class="fa fa-warehouse"></i> Quản lý kho hàng</h2>
+</div>
+
+<ul class="nav nav-tabs" id="warehouseTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="inStock-tab" data-bs-toggle="tab" data-bs-target="#inStock" type="button" role="tab">
+            <i class="fa fa-check-circle"></i> Hàng tồn (<span id="inStockCount">@(productsInStock?.Count() ?? 0)</span>)
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="outOfStock-tab" data-bs-toggle="tab" data-bs-target="#outOfStock" type="button" role="tab">
+            <i class="fa fa-exclamation-triangle"></i> Hàng cần nhập (<span id="outOfStockCount">@(productsOutOfStock?.Count() ?? 0)</span>)
+        </button>
+    </li>
+</ul>
+
+<div class="tab-content" id="warehouseTabContent">
+    <div class="tab-pane fade show active" id="inStock" role="tabpanel">
+        <div class="category-table-container">
+            @Html.Partial("~/Views/PartialView/_WarehouseProductListPartial.cshtml", productsInStock)
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="outOfStock" role="tabpanel">
+        <div class="category-table-container">
+            @Html.Partial("~/Views/PartialView/_WarehouseProductListPartial.cshtml", productsOutOfStock)
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateStockModal" tabindex="-1" aria-labelledby="updateStockModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateStockModalLabel">
+                    <i class="fa fa-edit"></i> Cập nhật số lượng tồn
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateStockForm">
+                    <input type="hidden" id="modalProductId" />
+                    <div class="mb-3">
+                        <label class="form-label">Tên sản phẩm</label>
+                        <input type="text" class="form-control" id="modalProductName" readonly style="background-color: #f8f9fa;" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số lượng tồn hiện tại</label>
+                        <input type="text" class="form-control" id="modalCurrentStock" readonly style="background-color: #f8f9fa;" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="modalNewStock" class="form-label">Số lượng tồn mới <span style="color: red;">*</span></label>
+                        <input type="number" class="form-control stock-form-input" id="modalNewStock" min="0" required />
+                        <div class="form-text">Nhập số lượng tồn mới cho sản phẩm</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: #ffc107; color: #212529; border: none;">Hủy</button>
+                <button type="button" class="btn btn-primary btn-update-submit" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                    <i class="fa fa-save"></i> Cập nhật
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/warehouse.js"></script>
+}
+
+    

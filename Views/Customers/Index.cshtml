@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ShopAKA.Models.Customer>
+
+@{
+    ViewBag.Title = "Quản lý khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+}
+
+<div class="category-header">
+    <h2><i class="fa fa-users"></i> Quản lý khách hàng</h2>
+</div>
+
+<div class="category-table-container">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table category-table">
+            <thead>
+                <tr>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th>Địa chỉ</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <span class="category-name">@Html.DisplayFor(modelItem => item.CustomerName)</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerPhone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerEmail)
+                        </td>
+                        <td>
+                            @(item.CustomerAddress ?? "N/A")
+                        </td>
+                        <td>
+                            @if (item.User != null)
+                            {
+                                <span style="background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                                    @item.User.Username
+                                </span>
+                            }
+                            else
+                            {
+                                <span style="color: #6c757d;">N/A</span>
+                            }
+                        </td>
+                        <td class="action-buttons">
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.CustomerID }, new { @class = "btn-custom btn-details" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="empty-state">
+            <i class="fa fa-inbox"></i>
+            <p>Chưa có khách hàng nào</p>
+        </div>
+    }
+</div>

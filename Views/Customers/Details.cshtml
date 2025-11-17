@@ -1,0 +1,56 @@
+﻿@model ShopAKA.Models.Customer
+
+@{
+    ViewBag.Title = "Chi tiết khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var orders = ViewBag.Orders as IEnumerable<ShopAKA.Models.Order>;
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+}
+
+<div class="category-header">
+    <h2><i class="fa fa-user"></i> Chi tiết khách hàng</h2>
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn-cancel" })
+</div>
+
+<div class="category-table-container" style="margin-bottom: 30px;">
+    <h3 style="color: #667eea; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">
+        <i class="fa fa-info-circle"></i> Thông tin khách hàng
+    </h3>
+    <dl class="dl-horizontal" style="font-size: 16px;">
+        <dt style="font-weight: 600; color: #495057; margin-bottom: 10px;">Tên khách hàng:</dt>
+        <dd style="margin-bottom: 15px;">@Html.DisplayFor(model => model.CustomerName)</dd>
+
+        <dt style="font-weight: 600; color: #495057; margin-bottom: 10px;">Số điện thoại:</dt>
+        <dd style="margin-bottom: 15px;">@(Model.CustomerPhone ?? "N/A")</dd>
+
+        <dt style="font-weight: 600; color: #495057; margin-bottom: 10px;">Email:</dt>
+        <dd style="margin-bottom: 15px;">@(Model.CustomerEmail ?? "N/A")</dd>
+
+        <dt style="font-weight: 600; color: #495057; margin-bottom: 10px;">Địa chỉ:</dt>
+        <dd style="margin-bottom: 15px;">@(Model.CustomerAddress ?? "N/A")</dd>
+
+        <dt style="font-weight: 600; color: #495057; margin-bottom: 10px;">Tên đăng nhập:</dt>
+        <dd style="margin-bottom: 15px;">
+            @if (Model.User != null)
+            {
+                <span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                    @Model.User.Username
+                </span>
+            }
+            else
+            {
+                <span style="color: #6c757d;">N/A</span>
+            }
+        </dd>
+    </dl>
+</div>
+
+<div class="category-table-container">
+    <h3 style="color: #667eea; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">
+        <i class="fa fa-shopping-cart"></i> Danh sách đơn hàng (@(orders != null ? orders.Count() : 0))
+    </h3>
+    @Html.Partial("~/Views/PartialView/_OrderListPartial.cshtml", orders)
+</div>

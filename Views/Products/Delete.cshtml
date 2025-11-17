@@ -1,0 +1,59 @@
+﻿@model ShopAKA.Models.Product
+
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+}
+
+<div class="category-delete-container">
+    <h2><i class="fa fa-trash"></i> Xóa sản phẩm</h2>
+
+    @if (ViewBag.HasRelatedOrders == true)
+    {
+        <div class="alert alert-danger-custom alert-custom">
+            <strong><i class="fa fa-exclamation-triangle"></i> Cảnh báo!</strong> Sản phẩm này đang có <strong>@ViewBag.OrderDetailCount</strong> đơn hàng liên quan. Nếu bạn xóa sản phẩm này, bạn sẽ không thể xóa thành công. Vui lòng xóa các đơn hàng trước.
+        </div>
+    }
+
+    <h3>Bạn có chắc chắn muốn xóa sản phẩm này?</h3>
+    <div class="mt-4">
+        <dl class="dl-horizontal">
+            <dt>Tên sản phẩm</dt>
+            <dd>@Html.DisplayFor(model => model.ProductName)</dd>
+
+            <dt>Danh mục</dt>
+            <dd>@(Model.Category != null ? Model.Category.CategoryName : "-")</dd>
+
+            <dt>Giá</dt>
+            <dd>@string.Format("{0:N0}", Model.ProductPrice) đ</dd>
+
+            @if (!string.IsNullOrEmpty(Model.ProductImage))
+            {
+                <dt>Hình ảnh</dt>
+                <dd>
+                    <img src="@Model.ProductImage" alt="@Model.ProductName" style="max-width: 150px; max-height: 150px; border-radius: 8px;" />
+                </dd>
+            }
+        </dl>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions mt-4">
+            <button type="submit" class="btn-submit btn-delete-confirm" @(ViewBag.HasRelatedOrders == true ? "disabled" : "")>
+                <i class="fa fa-trash"></i> Xác nhận xóa
+            </button>
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn-cancel" })
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/categories.js"></script>
+}

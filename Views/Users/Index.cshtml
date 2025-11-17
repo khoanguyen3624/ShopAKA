@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ShopAKA.Models.User>
+
+@{
+    ViewBag.Title = "Quản lý người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+}
+
+<div class="category-header">
+    <h2><i class="fa fa-user-shield"></i> Quản lý người dùng</h2>
+    @Html.ActionLink("+ Tạo mới", "Create", null, new { @class = "btn-create" })
+</div>
+
+<div class="category-table-container">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table category-table">
+            <thead>
+                <tr>
+                    <th>Tên đăng nhập</th>
+                    <th>Mật khẩu</th>
+                    <th>Vai trò</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <span class="category-name">@Html.DisplayFor(modelItem => item.Username)</span>
+                        </td>
+                        <td>
+                            <span style="font-family: monospace;">••••••••</span>
+                        </td>
+                        <td>
+                            <span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                                Quản trị viên
+                            </span>
+                        </td>
+                        <td class="action-buttons">
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.Username }, new { @class = "btn-custom btn-edit" })
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.Username }, new { @class = "btn-custom btn-delete" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="empty-state">
+            <i class="fa fa-inbox"></i>
+            <p>Chưa có người dùng quản trị nào</p>
+            @Html.ActionLink("Tạo người dùng đầu tiên", "Create", null, new { @class = "btn-create" })
+        </div>
+    }
+</div>
