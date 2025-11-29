@@ -125,50 +125,201 @@ function initSearchFunctionality() {
 
 function performSearch(query) {
     if (query.trim()) {
-        showSearchResults(query);
+        // Redirect to search page with query parameter
+        window.location.href = '/Home/Search?query=' + encodeURIComponent(query.trim());
     }
 }
 
 function showSearchResults(query) {
+    // This function is no longer needed, but kept for compatibility
 }
 
 function initProductInteractions() {
     const productCards = document.querySelectorAll('.product-card');
     
     productCards.forEach(card => {
-        const addToCartButton = document.createElement('button');
-        addToCartButton.className = 'btn btn-success btn-sm mt-2';
-        addToCartButton.innerHTML = '<i class="fas fa-shopping-cart me-1"></i>Thêm vào giỏ';
-        
-        addToCartButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            addToCart(card);
-        });
-        
-        const productInfo = card.querySelector('.product-info');
-        if (productInfo) {
-            productInfo.appendChild(addToCartButton);
-        }
-        
-        const viewButton = card.querySelector('.product-overlay button');
-        if (viewButton) {
-            viewButton.addEventListener('click', function(e) {
-                e.stopPropagation();
-                addToCart(card);
-            });
-        }
-        
         card.addEventListener('click', function(e) {
             if (e.target.closest('button') || e.target.closest('a')) {
                 return;
             }
-            window.location.href = `/Home/ProductDetail/${product.id}`;
+            const productIdElement = card.querySelector('[data-product-id]');
+            if (productIdElement) {
+                const productId = productIdElement.getAttribute('data-product-id');
+                window.location.href = `/Home/ProductDetail/${productId}`;
+            }
         });
     });
 }
 
-function addToCart(productCard) {
+function addToCart(productId, stayOnPage = false) {
+    if (!window.isUserLoggedIn) {
+        const loginModal = new bootstrap.Modal(document.getElementById('loginRequiredModal'));
+        loginModal.show();
+        return;
+    }
+    
+    if (typeof productId === 'number') {
+        const productElement = document.querySelector(`[data-product-id="${productId}"]`);
+        let productName = 'Sản phẩm';
+        let productPrice = 0;
+        let productImage = '/images/aka.jpg';
+        let stock = 999;
+        
+        if (productElement) {
+            productName = productElement.getAttribute('data-product-name') || 
+                         productElement.querySelector('[data-product-name]')?.textContent?.trim() || 
+                         productElement.querySelector('.product-name')?.textContent?.trim() || 
+                         'Sản phẩm';
+            
+            const priceAttr = productElement.getAttribute('data-product-price');
+            if (priceAttr) {
+                productPrice = parseInt(priceAttr) || 0;
+            } else {
+                const priceElement = productElement.querySelector('[data-product-price]');
+                if (priceElement) {
+                    const priceText = priceElement.textContent.replace(/[^\d]/g, '');
+                    productPrice = parseInt(priceText) || 0;
+                }
+            }
+            
+            const imageElement = productElement.querySelector('[data-product-image]') || productElement.querySelector('img');
+            if (imageElement) {
+                productImage = imageElement.getAttribute('data-product-image') || 
+                              imageElement.src || 
+                              imageElement.getAttribute('src') || 
+                              '/images/aka.jpg';
+            }
+            
+            const stockAttr = productElement.getAttribute('data-product-stock');
+            if (stockAttr) {
+                stock = parseInt(stockAttr) || 999;
+            } else {
+                const stockElement = productElement.querySelector('[data-product-stock]');
+                if (stockElement) {
+                    stock = parseInt(stockElement.getAttribute('data-product-stock') || stockElement.textContent.replace(/[^\d]/g, '')) || 999;
+                }
+            }
+        }
+        
+        const cartItem = {
+            id: productId,
+            name: productName,
+            price: productPrice,
+            quantity: 1,
+            image: productImage,
+            stock: stock,
+            total: productPrice
+        };
+        
+        let cart = JSON.parse(sessionStorage.getItem('cart') || '[]');
+        const existingItemIndex = cart.findIndex(item => item.id === productId);
+        
+        if (existingItemIndex > -1) {
+            const newQuantity = cart[existingItemIndex].quantity + 1;
+            if (newQuantity > stock) {
+                if (typeof showNotification === 'function') {
+                    showNotification(`Số lượng không được vượt quá ${stock} sản phẩm!`, 'error');
+                } else {
+                    alert(`Số lượng không được vượt quá ${stock} sản phẩm!`);
+                }
+                return;
+            }
+            cart[existingItemIndex].quantity = newQuantity;
+            cart[existingItemIndex].total = cart[existingItemIndex].price * newQuantity;
+        } else {
+            cart.push(cartItem);
+        }
+        
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        
+        let stockData = JSON.parse(sessionStorage.getItem('productStock') || '{}');
+        stockData[productId] = stock;
+        sessionStorage.setItem('productStock', JSON.stringify(stockData));
+        
+        if (stayOnPage) {
+            if (typeof showNotification === 'function') {
+                showNotification('Đã thêm sản phẩm vào giỏ hàng!', 'success');
+            } else {
+                alert('Đã thêm sản phẩm vào giỏ hàng!');
+            }
+            updateCartCount();
+        } else {
+            window.location.href = '/Home/Cart';
+        }
+    } else if (productId && productId.getAttribute) {
+        const id = productId.getAttribute('data-product-id') || productId.closest('[data-product-id]')?.getAttribute('data-product-id');
+        if (id) {
+            addToCart(parseInt(id), stayOnPage);
+        } else {
+            window.location.href = '/Home/Cart';
+        }
+    } else {
     window.location.href = '/Home/Cart';
+    }
+}
+
+function buyNow(productId) {
+    if (!window.isUserLoggedIn) {
+        const loginModal = new bootstrap.Modal(document.getElementById('loginRequiredModal'));
+        loginModal.show();
+        return;
+    }
+    
+    if (typeof productId === 'number') {
+        // Tìm phần tử sản phẩm dựa trên productId
+        const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+        
+        if (productCard) {
+            const productName = productCard.getAttribute('data-product-name') || 
+                               productCard.querySelector('[data-product-name]')?.textContent?.trim() || 
+                               'Sản phẩm';
+            const productPrice = parseFloat(productCard.getAttribute('data-product-price')) || 0;
+            const productStock = parseInt(productCard.getAttribute('data-product-stock')) || 0;
+            
+            const productImage = productCard.querySelector('[data-product-image]')?.getAttribute('data-product-image') ||
+                                productCard.querySelector('img')?.src ||
+                                '/images/aka.jpg';
+            
+            const checkoutItem = {
+                id: productId,
+                name: productName,
+                price: productPrice,
+                quantity: 1,
+                image: productImage,
+                stock: productStock,
+                total: productPrice
+            };
+            
+            sessionStorage.setItem('checkoutItems', JSON.stringify([checkoutItem]));
+            
+            let stockData = JSON.parse(sessionStorage.getItem('productStock') || '{}');
+            stockData[productId] = productStock;
+            sessionStorage.setItem('productStock', JSON.stringify(stockData));
+            
+            window.location.href = '/Home/Checkout';
+        } else {
+            const checkoutItem = {
+                id: productId,
+                name: 'Sản phẩm',
+                price: 0,
+                quantity: 1,
+                image: '/images/aka.jpg',
+                stock: 0,
+                total: 0
+            };
+            sessionStorage.setItem('checkoutItems', JSON.stringify([checkoutItem]));
+            window.location.href = '/Home/Checkout';
+        }
+    } else if (productId && productId.getAttribute) {
+        const id = productId.getAttribute('data-product-id') || productId.closest('[data-product-id]')?.getAttribute('data-product-id');
+        if (id) {
+            buyNow(parseInt(id));
+        } else {
+            window.location.href = '/Home/Checkout';
+        }
+    } else {
+        window.location.href = '/Home/Checkout';
+    }
 }
 
 function scrollToProducts() {
@@ -185,16 +336,32 @@ function scrollToProducts() {
 
 
 function updateCartCount() {
-    const cartBadge = document.querySelector('.badge');
+    try {
+        const cart = JSON.parse(sessionStorage.getItem('cart') || '[]');
+        const totalQuantity = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        const cartBadge = document.getElementById('cartBadge');
+        
     if (cartBadge) {
-        let currentCount = parseInt(cartBadge.textContent) || 0;
-        cartBadge.textContent = currentCount + 1;
+            if (totalQuantity > 0) {
+                cartBadge.textContent = totalQuantity;
+                cartBadge.style.display = 'block';
         cartBadge.style.animation = 'pulse 0.5s ease-in-out';
         setTimeout(() => {
             cartBadge.style.animation = '';
         }, 500);
+            } else {
+                cartBadge.style.display = 'none';
+            }
+        }
+    } catch (error) {
+        console.error('Error updating cart count:', error);
     }
 }
+
+// Load cart count when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartCount();
+});
 
 function initContactForm() {
     const contactForm = document.querySelector('.contact-form form');

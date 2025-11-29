@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ShopAKA.Models.Order>
+
+@{
+    bool showActions = ViewBag.ShowActions != null ? (bool)ViewBag.ShowActions : false;
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table category-table">
+        <thead>
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái thanh toán</th>
+                <th>Địa chỉ giao hàng</th>
+                @if (showActions)
+                {
+                    <th>Thao tác</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <span class="category-name">#@item.OrderID</span>
+                    </td>
+                    <td>
+                        @item.OrderDate.ToString("dd/MM/yyyy HH:mm")
+                    </td>
+                    <td>
+                        <span style="color: #28a745; font-weight: 600;">@string.Format("{0:N0}", item.TotalAmount) đ</span>
+                    </td>
+                    <td>
+                        @{
+                            var paymentStatusClass = item.PaymentStatus?.ToLower() == "đã thanh toán" || item.PaymentStatus?.ToLower() == "paid"
+                                ? "background: #d4edda; color: #155724;"
+                                : "background: #f8d7da; color: #721c24;";
+                        }
+                        <span style="@paymentStatusClass padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                            @(item.PaymentStatus ?? "Chưa thanh toán")
+                        </span>
+                    </td>
+                    <td>
+                        @(item.AddressDelivery ?? "N/A")
+                    </td>
+                    @if (showActions)
+                    {
+                        <td>
+                            @{
+                                bool isCustomerView = ViewBag.ShowActions != null && (bool)ViewBag.ShowActions;
+                                string actionName = isCustomerView ? "OrderDetail" : "Details";
+                                string controllerName = isCustomerView ? "Home" : "Orders";
+                            }
+                            <a href="@Url.Action(actionName, controllerName, new { id = item.OrderID })" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-eye"></i> Xem chi tiết
+                            </a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="empty-state">
+        <i class="fa fa-inbox"></i>
+        <p>@(ViewBag.EmptyMessage ?? "Chưa có đơn hàng nào")</p>
+    </div>
+}
+

@@ -1,0 +1,400 @@
+﻿@model ShopAKA.Models.Customer
+
+@{
+    ViewBag.Title = "Hồ sơ khách hàng";
+}
+<style>
+    .profile-container {
+        padding: 40px 0;
+        min-height: 60vh;
+    }
+
+    .page-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 0;
+        margin-bottom: 30px;
+    }
+
+    .profile-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 32px;
+        margin-right: 20px;
+    }
+
+    .profile-info h3 {
+        margin: 0;
+        color: #333;
+    }
+
+    .profile-info p {
+        margin: 5px 0 0 0;
+        color: #6c757d;
+    }
+
+    .info-section {
+        margin-bottom: 25px;
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+        .info-label i {
+            margin-right: 8px;
+            color: #667eea;
+            width: 20px;
+        }
+
+    .info-value {
+        color: #333;
+        font-size: 16px;
+        padding-left: 28px;
+    }
+
+    .action-buttons {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #f0f0f0;
+    }
+
+    .btn-action {
+        margin-right: 10px;
+    }
+</style>
+
+@section Styles {
+    <style>
+        .profile-container {
+            padding: 40px 0;
+            min-height: 60vh;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            margin-right: 20px;
+        }
+
+        .profile-info h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .profile-info p {
+            margin: 5px 0 0 0;
+            color: #6c757d;
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+            .info-label i {
+                margin-right: 8px;
+                color: #667eea;
+                width: 20px;
+            }
+
+        .info-value {
+            color: #333;
+            font-size: 16px;
+            padding-left: 28px;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .btn-action {
+            margin-right: 10px;
+        }
+    </style>
+}
+
+<div class="page-header">
+    <div class="container">
+        <h1><i class="fas fa-user-circle me-2"></i>Hồ sơ khách hàng</h1>
+        <p class="mb-0">Thông tin tài khoản của bạn</p>
+    </div>
+</div>
+
+<div class="container profile-container">
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h3>@Model.CustomerName</h3>
+                @if (Model.User != null)
+                {
+                    <p><i class="fas fa-user-tag me-1"></i>@Model.User.Username</p>
+                }
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-label">
+                <i class="fas fa-phone"></i>
+                Số điện thoại
+            </div>
+            <div class="info-value">
+                @(Model.CustomerPhone ?? "Chưa cập nhật")
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-label">
+                <i class="fas fa-envelope"></i>
+                Email
+            </div>
+            <div class="info-value">
+                @(Model.CustomerEmail ?? "Chưa cập nhật")
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-label">
+                <i class="fas fa-map-marker-alt"></i>
+                Địa chỉ
+            </div>
+            <div class="info-value">
+                @(Model.CustomerAddress ?? "Chưa cập nhật")
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button type="button" class="btn btn-primary btn-action" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                <i class="fas fa-edit me-2"></i>Chỉnh sửa thông tin
+            </button>
+            <button type="button" class="btn btn-warning btn-action text-white" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                <i class="fas fa-key me-2"></i>Đổi mật khẩu
+            </button>
+            <a href="@Url.Action("OrderHistory", "Home")" class="btn btn-outline-primary btn-action">
+                <i class="fas fa-history me-2"></i>Lịch sử giao dịch
+            </a>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary btn-action">
+                <i class="fas fa-home me-2"></i>Về trang chủ
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="@Url.Action("UpdateProfile", "Home")">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">
+                        <i class="fas fa-edit me-2"></i>Chỉnh sửa thông tin
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="CustomerName" class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="CustomerName" name="CustomerName" value="@Model.CustomerName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="CustomerPhone" class="form-label">Số điện thoại</label>
+                        <input type="tel" class="form-control" id="CustomerPhone" name="CustomerPhone" value="@Model.CustomerPhone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="CustomerEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="CustomerEmail" name="CustomerEmail" value="@Model.CustomerEmail">
+                    </div>
+                    <div class="mb-3">
+                        <label for="CustomerAddress" class="form-label">Địa chỉ</label>
+                        <textarea class="form-control" id="CustomerAddress" name="CustomerAddress" rows="3">@Model.CustomerAddress</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-2"></i>Lưu thay đổi
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="@Url.Action("ChangePassword", "Home")">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changePasswordModalLabel">
+                        <i class="fas fa-key me-2"></i>Đổi mật khẩu
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="OldPassword" class="form-label">Mật khẩu hiện tại</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="OldPassword" name="OldPassword" required>
+                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('OldPassword')">
+                                <i class="fas fa-eye" id="OldPasswordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="NewPassword" class="form-label">Mật khẩu mới</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="NewPassword" name="NewPassword" required minlength="6">
+                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('NewPassword')">
+                                <i class="fas fa-eye" id="NewPasswordIcon"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted">Mật khẩu phải có ít nhất 6 ký tự</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ConfirmPassword" class="form-label">Xác nhận mật khẩu mới</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" required minlength="6">
+                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('ConfirmPassword')">
+                                <i class="fas fa-eye" id="ConfirmPasswordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-warning text-white">
+                        <i class="fas fa-key me-2"></i>Đổi mật khẩu
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
+            alert.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            alert.innerHTML = '@TempData["SuccessMessage"] <button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 5000);
+        });
+    </script>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-danger alert-dismissible fade show position-fixed';
+            alert.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            alert.innerHTML = '@TempData["ErrorMessage"] <button type="button" class="btn-close" data-bs-dismiss="alert"></button>';
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 5000);
+        });
+    </script>
+}
+
+@section Scripts {
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(inputId + 'Icon');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        document.getElementById('changePasswordModal').addEventListener('submit', function(e) {
+            const newPassword = document.getElementById('NewPassword').value;
+            const confirmPassword = document.getElementById('ConfirmPassword').value;
+            
+            if (newPassword !== confirmPassword) {
+                e.preventDefault();
+                alert('Mật khẩu mới không khớp!');
+                return false;
+            }
+        });
+    </script>
+}
+

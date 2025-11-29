@@ -1,0 +1,106 @@
+﻿@model ShopAKA.Models.Order
+
+@{
+    ViewBag.Title = "Đặt hàng thành công - ShopAKA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Checkout.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script>
+        if (sessionStorage.getItem('cart')) {
+            sessionStorage.removeItem('cart');
+            sessionStorage.removeItem('checkoutItems');
+            sessionStorage.removeItem('productStock');
+
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+        }
+    </script>
+}
+
+<div class="container" style="margin-top: 100px; margin-bottom: 50px;">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="success-card">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="success-title">Đặt hàng thành công!</h2>
+                <p class="success-message">
+                    Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ xử lý đơn hàng và giao hàng trong thời gian sớm nhất.
+                </p>
+
+                <div class="order-details">
+                    <h5>Mã đơn hàng: #SHOPAKA-@Model.OrderID.ToString("D6")</h5>
+                    <p>Ngày đặt hàng: @Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</p>
+                    @if (TempData["PaymentMethod"] != null)
+                    {
+                        <p>Phương thức thanh toán: @TempData["PaymentMethod"]</p>
+                    }
+                    <p>Dự kiến giao hàng: 1-2 ngày làm việc</p>
+                </div>
+
+                <div class="success-actions">
+                    <a href="@Url.Action("Index", "Home")" class="btn-primary">
+                        <i class="fas fa-home me-2"></i>Về trang chủ
+                    </a>
+                    <a href="@Url.Action("OrderHistory", "Home")" class="btn-secondary">
+                        <i class="fas fa-history me-2"></i>Xem lịch sử đơn hàng
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="order-summary">
+                <div class="summary-header">
+                    <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
+                </div>
+
+                <div class="order-items">
+                    @Html.Partial("~/Views/PartialView/_OrderDetailListPartial.cshtml", Model.OrderDetail)
+                </div>
+
+                <div class="summary-content">
+                    <div class="summary-row">
+                        <span class="summary-label">Tạm tính:</span>
+                        <span class="summary-value">@string.Format("{0:N0}", Model.TotalAmount)₫</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="summary-label">Phí vận chuyển:</span>
+                        <span class="summary-value free">Miễn phí</span>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row total-row">
+                        <span class="summary-label">Tổng cộng:</span>
+                        <span class="summary-value total">@string.Format("{0:N0}", Model.TotalAmount)₫</span>
+                    </div>
+                </div>
+
+                <div class="security-info">
+                    <div class="security-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Thông tin được mã hóa SSL</span>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Thanh toán an toàn</span>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-truck"></i>
+                        <span>Giao hàng nhanh chóng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

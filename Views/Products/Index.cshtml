@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ShopAKA.Models.Product>
+
+@{
+    ViewBag.Title = "Quản lý hàng hóa";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+}
+
+<div class="category-header">
+    <h2><i class="fa fa-box"></i> Quản lý hàng hóa</h2>
+    @Html.ActionLink("+ Tạo mới", "Create", null, new { @class = "btn-create" })
+</div>
+
+<div class="category-table-container">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table category-table">
+            <thead>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng tồn</th>
+                    <th>Danh mục</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var stockQuantity = item.StockQuantity;
+                    <tr>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ProductImage))
+                            {
+                                <img src="@item.ProductImage" alt="@item.ProductName" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;" />
+                            }
+                            else
+                            {
+                                <div style="width: 80px; height: 80px; background: #e9ecef; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-image" style="color: #adb5bd;"></i>
+                                </div>
+                            }
+                        </td>
+                        <td>
+                            <span class="category-name">@Html.DisplayFor(modelItem => item.ProductName)</span>
+                        </td>
+                        <td>
+                            <span style="color: #28a745; font-weight: 600;">@string.Format("{0:N0}", item.ProductPrice) đ</span>
+                        </td>
+                        <td>
+                            <span class="product-count" style="@(stockQuantity > 0 ? "background: #d4edda; color: #155724;" : "background: #f8d7da; color: #721c24;")">
+                                @(stockQuantity > 0 ? stockQuantity.ToString() : "0") sản phẩm
+                            </span>
+                        </td>
+                        <td>
+                            @if (item.Category != null)
+                            {
+                                <span style="background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                                    @item.Category.CategoryName
+                                </span>
+                            }
+                        </td>
+                        <td class="action-buttons">
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.ProductID }, new { @class = "btn-custom btn-edit" })
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.ProductID }, new { @class = "btn-custom btn-details" })
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.ProductID }, new { @class = "btn-custom btn-delete" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="empty-state">
+            <i class="fa fa-inbox"></i>
+            <p>Chưa có sản phẩm nào</p>
+            @Html.ActionLink("Tạo sản phẩm đầu tiên", "Create", null, new { @class = "btn-create" })
+        </div>
+    }
+</div>

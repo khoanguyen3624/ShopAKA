@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ShopAKA.Models.Order>
+
+@{
+    ViewBag.Title = "Quản lý đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+}
+
+<div class="category-header">
+    <h2><i class="fa fa-shopping-cart"></i> Quản lý đơn hàng</h2>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="category-table-container">
+        <table class="table category-table">
+            <thead>
+                <tr>
+                    <th>Ngày đặt</th>
+                    <th>Khách hàng</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái thanh toán</th>
+                    <th>Địa chỉ giao hàng</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.OrderDate.ToString("dd/MM/yyyy HH:mm")
+                        </td>
+                        <td>
+                            @if (item.Customer != null)
+                            {
+                                <span class="category-name">@item.Customer.CustomerName</span>
+                            }
+                            else
+                            {
+                                <span style="color: #6c757d;">N/A</span>
+                            }
+                        </td>
+                        <td>
+                            <span style="color: #28a745; font-weight: 600;">@string.Format("{0:N0}", item.TotalAmount) đ</span>
+                        </td>
+                        <td>
+                            @{
+                                var paymentStatusClass = item.PaymentStatus?.ToLower() == "đã thanh toán" || item.PaymentStatus?.ToLower() == "paid"
+                                    ? "background: #d4edda; color: #155724;"
+                                    : "background: #f8d7da; color: #721c24;";
+                            }
+                            <span style="@paymentStatusClass padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                                @(item.PaymentStatus ?? "Chưa thanh toán")
+                            </span>
+                        </td>
+                        <td>
+                            @(item.AddressDelivery ?? "N/A")
+                        </td>
+                        <td class="action-buttons">
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.OrderID }, new { @class = "btn-custom btn-details" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="empty-state">
+        <i class="fa fa-inbox"></i>
+        <p>Không có đơn hàng nào</p>
+    </div>
+}

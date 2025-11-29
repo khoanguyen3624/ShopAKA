@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ShopAKA.Models.OrderDetail>
+
+@if (Model != null && Model.Any())
+{
+    <div class="order-items">
+        @foreach (var item in Model)
+        {
+            <div class="order-item">
+                @if (item.Product != null && !string.IsNullOrEmpty(item.Product.ProductImage))
+                {
+                    <img src="@item.Product.ProductImage" alt="@item.Product.ProductName" class="order-item-image" />
+                }
+                else
+                {
+                    <div class="order-item-image" style="display: flex; align-items: center; justify-content: center; background: #f8f9fa;">
+                        <i class="fa fa-image" style="color: #adb5bd; font-size: 24px;"></i>
+                    </div>
+                }
+                <div class="order-item-info">
+                    @if (item.Product != null)
+                    {
+                        <h6 class="order-item-name">@item.Product.ProductName</h6>
+                        if (item.Product.Category != null)
+                        {
+                            <p class="order-item-specs">Danh mục: @item.Product.Category.CategoryName</p>
+                        }
+                    }
+                    else
+                    {
+                        <h6 class="order-item-name">Sản phẩm không tồn tại</h6>
+                    }
+                    <div class="order-item-price">@string.Format("{0:N0}", item.UnitPrice)₫</div>
+                    <div class="order-item-total" style="font-weight: 600; color: #28a745; margin-top: 4px;">
+                        Thành tiền: @string.Format("{0:N0}", item.UnitPrice * item.Quantity)₫
+                    </div>
+                </div>
+                <div class="order-item-quantity">Số lượng: @item.Quantity</div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="empty-state">
+        <i class="fa fa-inbox"></i>
+        <p>Đơn hàng này không có sản phẩm nào</p>
+    </div>
+}
+

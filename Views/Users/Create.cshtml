@@ -1,0 +1,46 @@
+﻿@model ShopAKA.Models.User
+
+@{
+    ViewBag.Title = "Tạo người dùng mới";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+}
+
+<div class="category-header">
+    <h2><i class="fa fa-user-plus"></i> Tạo người dùng mới</h2>
+</div>
+
+<div class="category-form-container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserRole, new { Value = "1" })
+
+        <div class="form-group">
+            <label class="control-label">Tên đăng nhập <span style="color: red;">*</span></label>
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Mật khẩu <span style="color: red;">*</span></label>
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            <small class="form-text text-muted">Mật khẩu phải từ 6 đến 100 ký tự</small>
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" value="Tạo mới" class="btn-submit" />
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn-cancel" })
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

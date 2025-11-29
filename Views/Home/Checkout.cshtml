@@ -72,24 +72,27 @@
                             </h3>
                         </div>
                         <div class="card-body">
+                            @{
+                                var customer = ViewBag.Customer as ShopAKA.Models.Customer;
+                            }
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Họ và tên *</label>
-                                        <input type="text" class="form-control" placeholder="Nhập họ và tên" required>
+                                        <input type="text" name="customerName" class="form-control" placeholder="Nhập họ và tên" value="@(customer?.CustomerName ?? "")" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Số điện thoại *</label>
-                                        <input type="tel" class="form-control" placeholder="Nhập số điện thoại" required>
+                                        <input type="tel" name="customerPhone" class="form-control" placeholder="Nhập số điện thoại" value="@(customer?.CustomerPhone ?? "")" required>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="Nhập email của bạn">
+                                <input type="email" name="customerEmail" class="form-control" placeholder="Nhập email của bạn" value="@(customer?.CustomerEmail ?? "")">
                             </div>
 
                             <div class="row">
@@ -139,18 +142,18 @@
 
                             <div class="form-group">
                                 <label class="form-label">Địa chỉ chi tiết *</label>
-                                <input type="text" class="form-control" placeholder="Số nhà, tên đường..." required>
+                                <input type="text" name="customerAddress" class="form-control" placeholder="Số nhà, tên đường..." value="@(customer?.CustomerAddress ?? "")" required>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Ghi chú</label>
-                                <textarea class="form-control" rows="3" placeholder="Ghi chú cho đơn hàng..."></textarea>
+                                <textarea name="note" class="form-control" rows="3" placeholder="Ghi chú cho đơn hàng..."></textarea>
                             </div>
                         </div>
                     </div>
                     
                     <div class="step-actions">
-                        <button class="btn-next" onclick="nextStep(2)">
+                        <button type="button" class="btn-next" id="nextStep1Btn" onclick="nextStep(2)">
                             Tiếp theo <i class="fas fa-arrow-right ms-2"></i>
                         </button>
                     </div>
@@ -162,44 +165,26 @@
                             <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
                         </div>
                         
-                        <div class="order-items">
-                            <div class="order-item">
-                                <img src="~/images/iphone.jpeg" alt="Apple Watch" class="order-item-image">
-                                <div class="order-item-info">
-                                    <h6 class="order-item-name">Apple Watch Series 9 GPS 45mm</h6>
-                                    <p class="order-item-specs">Màu: Midnight | Size: 45mm</p>
-                                    <div class="order-item-price">8.990.000₫</div>
-                                </div>
-                                <div class="order-item-quantity">Số lượng: 1</div>
-                            </div>
-
-                            <div class="order-item">
-                                <img src="~/images/chuotmaytinh.jpeg" alt="AirPods" class="order-item-image">
-                                <div class="order-item-info">
-                                    <h6 class="order-item-name">AirPods Pro 2nd Gen</h6>
-                                    <p class="order-item-specs">Màu: White | Size: One Size</p>
-                                    <div class="order-item-price">5.490.000₫</div>
-                                </div>
-                                <div class="order-item-quantity">Số lượng: 2</div>
-                            </div>
+                        <div class="order-items" id="orderSummaryItems1">
+                            <!-- Order items will be loaded dynamically from sessionStorage -->
                         </div>
 
                         <div class="summary-content">
                             <div class="summary-row">
                                 <span class="summary-label">Tạm tính:</span>
-                                <span class="summary-value" id="subtotal">19.970.000₫</span>
+                                <span class="summary-value" id="subtotal1">0₫</span>
                             </div>
                             
                             <div class="summary-row">
                                 <span class="summary-label">Phí vận chuyển:</span>
-                                <span class="summary-value free">Miễn phí</span>
+                                <span class="summary-value free" id="shipping1">Miễn phí</span>
                             </div>
                             
                             <div class="summary-divider"></div>
                             
                             <div class="summary-row total-row">
                                 <span class="summary-label">Tổng cộng:</span>
-                                <span class="summary-value total">19.970.000₫</span>
+                                <span class="summary-value total" id="total1">0₫</span>
                             </div>
                         </div>
 
@@ -274,44 +259,26 @@
                             <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
                         </div>
                         
-                        <div class="order-items">
-                            <div class="order-item">
-                                <img src="~/images/iphone.jpeg" alt="Apple Watch" class="order-item-image">
-                                <div class="order-item-info">
-                                    <h6 class="order-item-name">Apple Watch Series 9 GPS 45mm</h6>
-                                    <p class="order-item-specs">Màu: Midnight | Size: 45mm</p>
-                                    <div class="order-item-price">8.990.000₫</div>
-                                </div>
-                                <div class="order-item-quantity">Số lượng: 1</div>
-                            </div>
-
-                            <div class="order-item">
-                                <img src="~/images/chuotmaytinh.jpeg" alt="AirPods" class="order-item-image">
-                                <div class="order-item-info">
-                                    <h6 class="order-item-name">AirPods Pro 2nd Gen</h6>
-                                    <p class="order-item-specs">Màu: White | Size: One Size</p>
-                                    <div class="order-item-price">5.490.000₫</div>
-                                </div>
-                                <div class="order-item-quantity">Số lượng: 2</div>
-                            </div>
+                        <div class="order-items" id="orderSummaryItems2">
+                            <!-- Order items will be loaded dynamically from sessionStorage -->
                         </div>
 
                         <div class="summary-content">
                             <div class="summary-row">
                                 <span class="summary-label">Tạm tính:</span>
-                                <span class="summary-value">19.970.000₫</span>
+                                <span class="summary-value" id="subtotal2">0₫</span>
                             </div>
                             
                             <div class="summary-row">
                                 <span class="summary-label">Phí vận chuyển:</span>
-                                <span class="summary-value free">Miễn phí</span>
+                                <span class="summary-value free" id="shipping2">Miễn phí</span>
                             </div>
                             
                             <div class="summary-divider"></div>
                             
                             <div class="summary-row total-row">
                                 <span class="summary-label">Tổng cộng:</span>
-                                <span class="summary-value total">19.970.000₫</span>
+                                <span class="summary-value total" id="total2">0₫</span>
                             </div>
                         </div>
 
@@ -371,7 +338,7 @@
                                 <h5>Phương thức thanh toán</h5>
                                 <div class="info-item">
                                     <span class="info-label">Thanh toán:</span>
-                                    <span class="info-value">Thanh toán khi nhận hàng (COD)</span>
+                                    <span class="info-value" id="selectedPaymentMethod">Thanh toán khi nhận hàng (COD)</span>
                                 </div>
                             </div>
 
@@ -409,44 +376,26 @@
                             <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
                         </div>
                         
-                        <div class="order-items">
-                            <div class="order-item">
-                                <img src="~/images/iphone.jpeg" alt="Apple Watch" class="order-item-image">
-                                <div class="order-item-info">
-                                    <h6 class="order-item-name">Apple Watch Series 9 GPS 45mm</h6>
-                                    <p class="order-item-specs">Màu: Midnight | Size: 45mm</p>
-                                    <div class="order-item-price">8.990.000₫</div>
-                                </div>
-                                <div class="order-item-quantity">Số lượng: 1</div>
-                            </div>
-
-                            <div class="order-item">
-                                <img src="~/images/chuotmaytinh.jpeg" alt="AirPods" class="order-item-image">
-                                <div class="order-item-info">
-                                    <h6 class="order-item-name">AirPods Pro 2nd Gen</h6>
-                                    <p class="order-item-specs">Màu: White | Size: One Size</p>
-                                    <div class="order-item-price">5.490.000₫</div>
-                                </div>
-                                <div class="order-item-quantity">Số lượng: 2</div>
-                            </div>
+                        <div class="order-items" id="orderSummaryItems3">
+                            <!-- Order items will be loaded dynamically from sessionStorage -->
                         </div>
 
                         <div class="summary-content">
                             <div class="summary-row">
                                 <span class="summary-label">Tạm tính:</span>
-                                <span class="summary-value">19.970.000₫</span>
+                                <span class="summary-value" id="subtotal3">0₫</span>
                             </div>
                             
                             <div class="summary-row">
                                 <span class="summary-label">Phí vận chuyển:</span>
-                                <span class="summary-value free">Miễn phí</span>
+                                <span class="summary-value free" id="shipping3">Miễn phí</span>
                             </div>
                             
                             <div class="summary-divider"></div>
                             
                             <div class="summary-row total-row">
                                 <span class="summary-label">Tổng cộng:</span>
-                                <span class="summary-value total">19.970.000₫</span>
+                                <span class="summary-value total" id="total3">0₫</span>
                             </div>
                         </div>
 
@@ -470,10 +419,21 @@
                         <button class="btn-back" onclick="prevStep(2)">
                             <i class="fas fa-arrow-left me-2"></i>Quay lại
                         </button>
-                        <button class="btn-confirm" onclick="nextStep(4)">
+                        <button type="button" class="btn-confirm" id="confirmOrderBtn" onclick="placeOrder()">
                             <i class="fas fa-check me-2"></i>Xác nhận đơn hàng
                         </button>
                     </div>
+                    
+                    <form id="checkoutForm" method="post" action="@Url.Action("ProcessCheckout", "Home")" style="display: none;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="customerName" id="formCustomerName" />
+                        <input type="hidden" name="customerPhone" id="formCustomerPhone" />
+                        <input type="hidden" name="customerEmail" id="formCustomerEmail" />
+                        <input type="hidden" name="customerAddress" id="formCustomerAddress" />
+                        <input type="hidden" name="paymentMethod" id="formPaymentMethod" />
+                        <input type="hidden" name="note" id="formNote" />
+                        <input type="hidden" name="orderItems" id="formOrderItems" />
+                    </form>
                 </div>
             </div>
         </div>
@@ -512,44 +472,26 @@
                             <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
                         </div>
                         
-                        <div class="order-items">
-                            <div class="order-item">
-                                <img src="~/images/iphone.jpeg" alt="Apple Watch" class="order-item-image">
-                                <div class="order-item-info">
-                                    <h6 class="order-item-name">Apple Watch Series 9 GPS 45mm</h6>
-                                    <p class="order-item-specs">Màu: Midnight | Size: 45mm</p>
-                                    <div class="order-item-price">8.990.000₫</div>
-                                </div>
-                                <div class="order-item-quantity">Số lượng: 1</div>
-                            </div>
-
-                            <div class="order-item">
-                                <img src="~/images/chuotmaytinh.jpeg" alt="AirPods" class="order-item-image">
-                                <div class="order-item-info">
-                                    <h6 class="order-item-name">AirPods Pro 2nd Gen</h6>
-                                    <p class="order-item-specs">Màu: White | Size: One Size</p>
-                                    <div class="order-item-price">5.490.000₫</div>
-                                </div>
-                                <div class="order-item-quantity">Số lượng: 2</div>
-                            </div>
+                        <div class="order-items" id="orderSummaryItems4">
+                            <!-- Order items will be loaded dynamically from sessionStorage -->
                         </div>
 
                         <div class="summary-content">
                             <div class="summary-row">
                                 <span class="summary-label">Tạm tính:</span>
-                                <span class="summary-value">19.970.000₫</span>
+                                <span class="summary-value" id="subtotal4">0₫</span>
                             </div>
                             
                             <div class="summary-row">
                                 <span class="summary-label">Phí vận chuyển:</span>
-                                <span class="summary-value free">Miễn phí</span>
+                                <span class="summary-value free" id="shipping4">Miễn phí</span>
                             </div>
                             
                             <div class="summary-divider"></div>
                             
                             <div class="summary-row total-row">
                                 <span class="summary-label">Tổng cộng:</span>
-                                <span class="summary-value total">19.970.000₫</span>
+                                <span class="summary-value total" id="total4">0₫</span>
                             </div>
                         </div>
 

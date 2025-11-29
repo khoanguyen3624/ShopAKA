@@ -1,0 +1,49 @@
+﻿@model ShopAKA.Models.Category
+
+@{
+    ViewBag.Title = "Xóa danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+}
+
+<div class="category-delete-container">
+    <h2><i class="fa fa-trash"></i> Xóa danh mục</h2>
+
+    @if (ViewBag.HasRelatedProducts == true)
+    {
+        <div class="alert alert-danger-custom alert-custom">
+            <strong><i class="fa fa-exclamation-triangle"></i> Cảnh báo!</strong> Danh mục này đang có <strong>@ViewBag.ProductCount</strong> sản phẩm liên quan. Nếu bạn xóa danh mục này, bạn sẽ không thể xóa thành công. Vui lòng xóa hoặc chuyển các sản phẩm trước.
+        </div>
+    }
+
+    <h3>Bạn có chắc chắn muốn xóa danh mục này?</h3>
+    <div class="mt-4">
+        <dl class="dl-horizontal">
+            <dt>
+                Tên danh mục
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+        </dl>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions mt-4">
+            <button type="submit" class="btn-submit btn-delete-confirm" @(ViewBag.HasRelatedProducts == true ? "disabled" : "")>
+                <i class="fa fa-trash"></i> Xác nhận xóa
+            </button>
+            @Html.ActionLink("Hủy", "Index", null, new { @class = "btn-cancel" })
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/categories.js"></script>
+}

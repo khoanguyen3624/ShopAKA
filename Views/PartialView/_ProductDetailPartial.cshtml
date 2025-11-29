@@ -1,0 +1,132 @@
+﻿@model ShopAKA.Models.Product
+@{
+    var showBuyButtons = ViewBag.ShowBuyButtons != null && (bool)ViewBag.ShowBuyButtons;
+    var showAdminButtons = ViewBag.ShowAdminButtons != null && (bool)ViewBag.ShowAdminButtons;
+}
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+    <div>
+        <div class="product-image-card">
+            @if (!string.IsNullOrEmpty(Model.ProductImage))
+            {
+                <img src="@Model.ProductImage" alt="@Model.ProductName" style="width: 100%; height: 500px; object-fit: contain; background: #f8f9fa;" data-product-image />
+            }
+            else
+            {
+                <div style="width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; background: #f8f9fa;">
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: #e9ecef; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                            <span style="font-size: 32px;">📱</span>
+                        </div>
+                        <p style="color: #6c757d; font-size: 14px;">Chưa có hình ảnh</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="feature-buttons">
+            <div class="feature-btn">
+                <div style="font-size: 20px; margin-bottom: 8px;">🚚</div>
+                <p style="margin: 0; font-size: 14px; font-weight: 500;">Giao hàng nhanh</p>
+            </div>
+            <div class="feature-btn">
+                <div style="font-size: 20px; margin-bottom: 8px;"><i class="fas fa-shield-alt"></i></div>
+                <p style="margin: 0; font-size: 14px; font-weight: 500;">Uy tín</p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="product-info-card">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                <h1 style="font-size: 24px; font-weight: bold; margin: 0; color: #212529;" data-product-name>@Model.ProductName</h1>
+            </div>
+
+            @if (Model.Category != null)
+            {
+                <div style="margin-bottom: 16px;">
+                    <span style="background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                        @Model.Category.CategoryName
+                    </span>
+                </div>
+            }
+
+            <div style="margin-bottom: 16px;">
+                <p style="font-size: 28px; font-weight: bold; color: #28a745; margin: 0 0 4px 0;" data-product-price>
+                    @string.Format("{0:N0}", Model.ProductPrice) VND
+                </p>
+                <p style="color: #6c757d; font-size: 14px; margin: 0;">Giá đã bao gồm thuế</p>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.ProductDecription))
+            {
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #212529;">Mô tả sản phẩm</h3>
+                    <p style="color: #495057; line-height: 1.6; margin: 0;">@Model.ProductDecription</p>
+                </div>
+            }
+
+            @if (showBuyButtons)
+            {
+                <div style="margin-bottom: 24px;">
+                    <h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #212529;">Số lượng</h3>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <div class="quantity-selector">
+                            <button onclick="decreaseQuantity()" class="quantity-btn">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span id="quantity" class="quantity-display">1</span>
+                            <button onclick="increaseQuantity()" class="quantity-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+
+                        <div style="color: #495057;">
+                            <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px 0;">Tổng cộng:</p>
+                            <p id="totalPrice" style="font-size: 20px; font-weight: bold; color: #28a745; margin: 0;">
+                                @string.Format("{0:N0}", Model.ProductPrice) đồng
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button onclick="buyNow()" class="buy-now-btn">
+                        <i class="fas fa-bolt" style="margin-right: 8px;"></i>
+                        Mua ngay
+                    </button>
+
+                    <button onclick="addToCart()" class="add-cart-btn">
+                        <i class="fas fa-shopping-cart" style="margin-right: 8px;"></i>
+                        Thêm vào giỏ hàng
+                    </button>
+                </div>
+            }
+
+            <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e9ecef;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    @{
+                        var isAvailable = Model.StockQuantity > 0;
+                        var statusColor = isAvailable ? "#28a745" : "#dc3545";
+                        var statusText = isAvailable ? "Có sẵn - Giao hàng trong 30-45 phút" : "Tạm hết hàng";
+                    }
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background: @statusColor;"></div>
+                    <span style="color: #495057; font-weight: 500; font-size: 14px;">
+                        @statusText
+                    </span>
+                </div>
+            </div>
+
+            @if (showAdminButtons)
+            {
+                <div style="margin-top: 16px;">
+                    @Html.ActionLink("Chỉnh sửa", "Edit", "Products", new { id = Model.ProductID }, new { @class = "btn-submit", style = "text-decoration: none; display: block; text-align: center; width: 100%; margin-bottom: 12px; background: #007bff; color: white; padding: 12px; border-radius: 8px; font-weight: 600; border: none; transition: all 0.3s ease;" })
+                    @Html.ActionLink("Quay lại danh sách", "Index", "Products", null, new { @class = "btn-cancel", style = "text-decoration: none; display: block; text-align: center; width: 100%; margin-left: 0; background: #ffc107; color: #212529; padding: 12px; border-radius: 8px; font-weight: 600; border: none; transition: all 0.3s ease;" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div data-product-id="@Model.ProductID" style="display: none;"></div>
+

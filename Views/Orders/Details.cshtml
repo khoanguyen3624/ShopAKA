@@ -1,0 +1,127 @@
+﻿@model ShopAKA.Models.Order
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+    <link href="~/Content/Checkout.css" rel="stylesheet" />
+}
+
+<div class="category-header">
+    <h2><i class="fa fa-receipt"></i> Chi tiết đơn hàng</h2>
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn-cancel" })
+</div>
+
+<div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+    <div class="checkout-card" style="margin-bottom: 2rem;">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-user me-2"></i>
+                Thông tin khách hàng
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="confirmation-section">
+                <div class="info-grid">
+                    @if (Model.Customer != null)
+                    {
+                        <div class="info-item">
+                            <span class="info-label">Họ và tên:</span>
+                            <span class="info-value">@Model.Customer.CustomerName</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Số điện thoại:</span>
+                            <span class="info-value">@(Model.Customer.CustomerPhone ?? "N/A")</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email:</span>
+                            <span class="info-value">@(Model.Customer.CustomerEmail ?? "N/A")</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Địa chỉ:</span>
+                            <span class="info-value">@(Model.Customer.CustomerAddress ?? "N/A")</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="info-item">
+                            <span class="info-value" style="color: #6c757d;">Không có thông tin khách hàng</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-card" style="margin-bottom: 2rem;">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-info-circle me-2"></i>
+                Thông tin đơn hàng
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="confirmation-section">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Ngày đặt:</span>
+                        <span class="info-value">@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Trạng thái thanh toán:</span>
+                        <span class="info-value">
+                            @{
+                                var paymentStatusClass = Model.PaymentStatus?.ToLower() == "đã thanh toán" || Model.PaymentStatus?.ToLower() == "paid"
+                                    ? "background: #d4edda; color: #155724;"
+                                    : "background: #f8d7da; color: #721c24;";
+                            }
+                            <span style="@paymentStatusClass padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                                @(Model.PaymentStatus ?? "Chưa thanh toán")
+                            </span>
+                        </span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Địa chỉ giao hàng:</span>
+                        <span class="info-value">@(Model.AddressDelivery ?? "N/A")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-card" style="margin-bottom: 2rem;">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-shopping-bag me-2"></i>
+                Sản phẩm đặt mua
+            </h3>
+        </div>
+        <div class="card-body">
+            @Html.Partial("~/Views/PartialView/_OrderDetailListPartial.cshtml", Model.OrderDetail)
+        </div>
+    </div>
+
+    <div class="order-summary" style="position: static; margin-top: 2rem;">
+        <div class="summary-header">
+            <h3 class="summary-title">Tóm tắt đơn hàng</h3>
+        </div>
+        <div class="summary-content">
+            <div class="summary-row">
+                <span class="summary-label">Tạm tính:</span>
+                <span class="summary-value">@string.Format("{0:N0}", Model.TotalAmount) đ</span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Phí vận chuyển:</span>
+                <span class="summary-value free">Miễn phí</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total-row">
+                <span class="summary-label">Tổng cộng:</span>
+                <span class="summary-value total">@string.Format("{0:N0}", Model.TotalAmount) đ</span>
+            </div>
+        </div>
+    </div>
+</div>

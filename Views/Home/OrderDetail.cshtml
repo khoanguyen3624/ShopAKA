@@ -1,0 +1,113 @@
+﻿@model ShopAKA.Models.Order
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng - ShopAKA";
+}
+
+@section Styles {
+    <link href="~/Content/Checkout.css" rel="stylesheet" />
+    <style>
+        .order-detail-container {
+            padding: 40px 0;
+            min-height: 60vh;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+    </style>
+}
+
+<div class="page-header">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <a href="@Url.Action("OrderHistory", "Home")" class="btn btn-light me-3">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </a>
+            <div>
+                <h1 class="mb-0"><i class="fas fa-receipt me-2"></i>Chi tiết đơn hàng #@Model.OrderID.ToString("D6")</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container order-detail-container">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <div class="checkout-card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Thông tin đơn hàng
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="confirmation-section">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Mã đơn hàng:</span>
+                            <span class="info-value">#@Model.OrderID.ToString("D6")</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Ngày đặt:</span>
+                            <span class="info-value">@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Trạng thái thanh toán:</span>
+                            <span class="info-value">
+                                @{
+                                    var paymentStatusClass = Model.PaymentStatus?.ToLower() == "đã thanh toán" || Model.PaymentStatus?.ToLower() == "paid"
+                                        ? "background: #d4edda; color: #155724;"
+                                        : "background: #f8d7da; color: #721c24;";
+                                }
+                                <span style="@paymentStatusClass padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
+                                    @(Model.PaymentStatus ?? "Chưa thanh toán")
+                                </span>
+                            </span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Địa chỉ giao hàng:</span>
+                            <span class="info-value">@(Model.AddressDelivery ?? "N/A")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkout-card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-shopping-bag me-2"></i>
+                    Sản phẩm đặt mua
+                </h3>
+            </div>
+            <div class="card-body">
+                @Html.Partial("~/Views/PartialView/_OrderDetailListPartial.cshtml", Model.OrderDetail)
+            </div>
+        </div>
+
+        <div class="order-summary" style="position: static; margin-top: 2rem;">
+            <div class="summary-header">
+                <h3 class="summary-title">Tóm tắt đơn hàng</h3>
+            </div>
+            <div class="summary-content">
+                <div class="summary-row">
+                    <span class="summary-label">Tạm tính:</span>
+                    <span class="summary-value">@string.Format("{0:N0}", Model.TotalAmount)₫</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Phí vận chuyển:</span>
+                    <span class="summary-value free">Miễn phí</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-row total-row">
+                    <span class="summary-label">Tổng cộng:</span>
+                    <span class="summary-value total">@string.Format("{0:N0}", Model.TotalAmount)₫</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

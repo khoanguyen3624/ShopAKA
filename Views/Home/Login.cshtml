@@ -24,8 +24,11 @@
                                 <div class="login-left">
                                     <div class="welcome-content">
                                         <div class="logo-section mb-4">
-                                            <h1 class="logo-text">ShopAKA</h1>
-                                            <p class="logo-subtitle">Cửa hàng điện tử uy tín</p>
+                                            <img src="~/images/shop.jpg" alt="ShopAKA Logo" class="logo-image" />
+                                            <div class="logo-text-wrapper">
+                                                <h1 class="logo-text">ShopAKA</h1>
+                                                <p class="logo-subtitle">Cửa hàng điện tử uy tín</p>
+                                            </div>
                                         </div>
                                         <h2 class="welcome-text">Chào mừng trở lại!</h2>
                                         <p class="welcome-desc">
@@ -62,13 +65,23 @@
                                                 <p class="form-subtitle">Nhập thông tin để đăng nhập</p>
                                             </div>
 
-                                            <form>
+                                            @if (TempData["LoginError"] != null)
+                                            {
+                                                <div style="background: #f8d7da; color: #721c24; padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #f5c6cb;">
+                                                    <i class="fas fa-exclamation-circle"></i> @TempData["LoginError"]
+                                                </div>
+                                            }
+
+                                            @using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { @class = "login-form-action" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
                                                 <div class="form-group">
                                                     <label class="form-label">
-                                                        <i class="fas fa-envelope"></i>
-                                                        Email
+                                                        <i class="fas fa-user"></i>
+                                                        Tên đăng nhập
                                                     </label>
-                                                    <input type="email" class="form-control" placeholder="Nhập email của bạn" required>
+                                                    <input type="text" name="username" class="form-control" placeholder="Nhập tên đăng nhập" required autofocus />
                                                 </div>
 
                                                 <div class="form-group">
@@ -77,7 +90,7 @@
                                                         Mật khẩu
                                                     </label>
                                                     <div class="password-input">
-                                                        <input type="password" id="loginPassword" class="form-control" placeholder="Nhập mật khẩu" required>
+                                                        <input type="password" name="password" id="loginPassword" class="form-control" placeholder="Nhập mật khẩu" required>
                                                         <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
                                                             <i class="fas fa-eye"></i>
                                                         </button>
@@ -115,13 +128,14 @@
                                                 </div>
 
                                                 <div class="form-footer">
-                                                    <p>Chưa có tài khoản? 
+                                                    <p>
+                                                        Chưa có tài khoản?
                                                         <button type="button" class="btn-link" onclick="switchToRegister()">
                                                             Đăng ký ngay
                                                         </button>
                                                     </p>
                                                 </div>
-                                            </form>
+                                            }
                                         </div>
 
                                         <div id="registerForm" class="form-content" style="display: none;">
@@ -130,7 +144,37 @@
                                                 <p class="form-subtitle">Tạo tài khoản mới</p>
                                             </div>
 
-                                            <form>
+                                            @if (TempData["RegisterError"] != null)
+                                            {
+                                                <div style="background: #f8d7da; color: #721c24; padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #f5c6cb;">
+                                                    <i class="fas fa-exclamation-circle"></i> @TempData["RegisterError"]
+                                                </div>
+                                            }
+
+                                            @if (TempData["RegisterSuccess"] != null)
+                                            {
+                                                <div style="background: #d4edda; color: #155724; padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #c3e6cb;">
+                                                    <i class="fas fa-check-circle"></i> @TempData["RegisterSuccess"]
+                                                </div>
+                                            }
+
+                                            @{
+                                                var registerModel = TempData["RegisterModel"] as ShopAKA.Models.RegisterViewModel;
+                                            }
+
+                                            @using (Html.BeginForm("Register", "Auth", FormMethod.Post, new { @class = "register-form-action" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
+                                                <div class="form-group">
+                                                    <label class="form-label">
+                                                        <i class="fas fa-user"></i>
+                                                        Tên đăng nhập
+                                                    </label>
+                                                    <input type="text" name="Username" class="form-control" placeholder="Nhập tên đăng nhập" value="@(registerModel?.Username ?? "")" required />
+                                                    @Html.ValidationMessage("Username", "", new { @class = "text-danger" })
+                                                </div>
+
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -138,7 +182,8 @@
                                                                 <i class="fas fa-user"></i>
                                                                 Họ và tên
                                                             </label>
-                                                            <input type="text" class="form-control" placeholder="Nhập họ và tên" required>
+                                                            <input type="text" name="CustomerName" class="form-control" placeholder="Nhập họ và tên" value="@(registerModel?.CustomerName ?? "")" required />
+                                                            @Html.ValidationMessage("CustomerName", "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -147,7 +192,8 @@
                                                                 <i class="fas fa-phone"></i>
                                                                 Số điện thoại
                                                             </label>
-                                                            <input type="tel" class="form-control" placeholder="Nhập số điện thoại" required>
+                                                            <input type="tel" name="CustomerPhone" class="form-control" placeholder="Nhập số điện thoại" value="@(registerModel?.CustomerPhone ?? "")" required />
+                                                            @Html.ValidationMessage("CustomerPhone", "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
                                                 </div>
@@ -157,7 +203,8 @@
                                                         <i class="fas fa-envelope"></i>
                                                         Email
                                                     </label>
-                                                    <input type="email" class="form-control" placeholder="Nhập email của bạn" required>
+                                                    <input type="email" name="CustomerEmail" class="form-control" placeholder="Nhập email của bạn" value="@(registerModel?.CustomerEmail ?? "")" required />
+                                                    @Html.ValidationMessage("CustomerEmail", "", new { @class = "text-danger" })
                                                 </div>
 
                                                 <div class="form-group">
@@ -166,11 +213,12 @@
                                                         Mật khẩu
                                                     </label>
                                                     <div class="password-input">
-                                                        <input type="password" id="registerPassword" class="form-control" placeholder="Nhập mật khẩu" required>
+                                                        <input type="password" name="Password" id="registerPassword" class="form-control" placeholder="Nhập mật khẩu" required>
                                                         <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">
                                                             <i class="fas fa-eye"></i>
                                                         </button>
                                                     </div>
+                                                    @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
                                                 </div>
 
                                                 <div class="form-group">
@@ -179,11 +227,12 @@
                                                         Xác nhận mật khẩu
                                                     </label>
                                                     <div class="password-input">
-                                                        <input type="password" id="confirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
+                                                        <input type="password" name="ConfirmPassword" id="confirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
                                                         <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
                                                             <i class="fas fa-eye"></i>
                                                         </button>
                                                     </div>
+                                                    @Html.ValidationMessage("ConfirmPassword", "", new { @class = "text-danger" })
                                                 </div>
 
                                                 <div class="form-group">
@@ -191,7 +240,8 @@
                                                         <i class="fas fa-map-marker-alt"></i>
                                                         Địa chỉ
                                                     </label>
-                                                    <textarea class="form-control" rows="3" placeholder="Nhập địa chỉ của bạn"></textarea>
+                                                    <textarea name="CustomerAddress" class="form-control" rows="3" placeholder="Nhập địa chỉ của bạn">@(registerModel?.CustomerAddress ?? "")</textarea>
+                                                    @Html.ValidationMessage("CustomerAddress", "", new { @class = "text-danger" })
                                                 </div>
 
                                                 <div class="form-check mb-3">
@@ -222,13 +272,14 @@
                                                 </div>
 
                                                 <div class="form-footer">
-                                                    <p>Đã có tài khoản? 
+                                                    <p>
+                                                        Đã có tài khoản?
                                                         <button type="button" class="btn-link" onclick="switchToLogin()">
                                                             Đăng nhập ngay
                                                         </button>
                                                     </p>
                                                 </div>
-                                            </form>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -243,5 +294,20 @@
     <script src="~/Scripts/jquery-3.7.0.min.js"></script>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/Login.js"></script>
+    <script>
+        @if (TempData["RegisterError"] != null || TempData["RegisterSuccess"] != null)
+        {
+            <text>
+            document.addEventListener('DOMContentLoaded', function () {
+                const loginForm = document.getElementById('loginForm');
+                const registerForm = document.getElementById('registerForm');
+                if (loginForm && registerForm) {
+                    loginForm.style.display = 'none';
+                    registerForm.style.display = 'block';
+                }
+            });
+            </text>
+        }
+    </script>
 </body>
 </html>

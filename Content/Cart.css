@@ -442,6 +442,13 @@
     color: white;
 }
 
+.cart-actions {
+    padding: 1.5rem 0;
+    border-top: 1px solid #e9ecef;
+    text-align: left;
+    margin-left: 20px;
+}
+
 .continue-btn {
     background: white;
     border: 2px solid var(--primary-color);
@@ -449,9 +456,9 @@
     border-radius: 12px;
     padding: 0.75rem 2rem;
     font-weight: 600;
-    width: 100%;
+    max-width: 300px;
     transition: all 0.3s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
@@ -461,6 +468,7 @@
     background: var(--primary-color);
     color: white;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(25,118,210,0.2);
 }
 
 .security-info {

@@ -1,0 +1,23 @@
+﻿@model ShopAKA.Models.Product
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.ShowBuyButtons = false;
+    ViewBag.ShowAdminButtons = true;
+}
+
+@section Styles {
+    <link href="~/Content/ProductDetail.css" rel="stylesheet" />
+}
+
+<div class="product-detail-page">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        <button onclick="history.back()" style="background: none; border: none; color: #6c757d; margin-bottom: 30px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-arrow-left"></i>
+            <span>Quay lại</span>
+        </button>
+
+        @Html.Partial("~/Views/PartialView/_ProductDetailPartial.cshtml", Model)
+    </div>
+</div>

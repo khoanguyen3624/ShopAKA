@@ -1,9 +1,9 @@
 function switchToRegister() {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
-    
+
     if (!loginForm || !registerForm) return;
-    
+
     loginForm.style.display = 'none';
     registerForm.style.display = 'block';
 }
@@ -11,9 +11,9 @@ function switchToRegister() {
 function switchToLogin() {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
-    
+
     if (!loginForm || !registerForm) return;
-    
+
     registerForm.style.display = 'none';
     loginForm.style.display = 'block';
 }
@@ -22,7 +22,7 @@ function togglePassword(inputId) {
     const input = document.getElementById(inputId);
     const button = input.nextElementSibling;
     const icon = button.querySelector('i');
-    
+
     if (input.type === 'password') {
         input.type = 'text';
         icon.classList.remove('fa-eye');
@@ -34,16 +34,38 @@ function togglePassword(inputId) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const forms = document.querySelectorAll('form');
-    
+
     forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+        if (form.classList.contains('login-form-action') || form.classList.contains('register-form-action')) {
+            form.addEventListener('submit', function (e) {
+                const inputs = form.querySelectorAll('input[required]');
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.classList.add('is-invalid');
+                    } else {
+                        input.classList.remove('is-invalid');
+                    }
+                });
+
+                if (!isValid) {
+                    e.preventDefault();
+                    alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+                }
+            });
+            return;
+        }
+
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const inputs = form.querySelectorAll('input[required]');
             let isValid = true;
-            
+
             inputs.forEach(input => {
                 if (!input.value.trim()) {
                     isValid = false;
@@ -52,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     input.classList.remove('is-invalid');
                 }
             });
-            
+
             if (isValid) {
                 alert('Form submitted successfully!');
             } else {
@@ -60,4 +82,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
 });

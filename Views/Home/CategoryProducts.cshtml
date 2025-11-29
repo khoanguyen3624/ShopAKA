@@ -1,0 +1,152 @@
+﻿@{
+    var products = ViewBag.Products as List<ShopAKA.Models.Product>;
+    int categoryID = ViewBag.CategoryID ?? 0;
+    string categoryName = ViewBag.CategoryName ?? "";
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int totalPages = ViewBag.TotalPages ?? 0;
+    int totalProducts = ViewBag.TotalProducts ?? 0;
+    
+    ViewBag.Title = (!string.IsNullOrEmpty(categoryName) ? categoryName + " - " : "") + "ShopAKA";
+}
+
+<section class="category-products-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@categoryName</li>
+                    </ol>
+                </nav>
+
+                <div class="text-center">
+                    <h2 class="section-title">
+                        <i class="fas fa-box me-2"></i>@categoryName
+                    </h2>
+                </div>
+                <p class="text-muted">
+                    Có <strong>@totalProducts</strong> sản phẩm trong danh mục này
+                </p>
+            </div>
+        </div>
+
+        @if (products != null && products.Any())
+        {
+            <div class="row">
+                @foreach (var product in products)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="product-card" data-product-id="@product.ProductID" data-product-name="@product.ProductName" data-product-price="@product.ProductPrice" data-product-stock="@product.StockQuantity">
+                            <div class="product-image">
+                                <img src="@(string.IsNullOrEmpty(product.ProductImage) ? "~/images/no-image.jpg" : product.ProductImage)" alt="@product.ProductName" class="img-fluid" data-product-image="@product.ProductImage">
+                                <div class="product-overlay">
+                                    <a href="@Url.Action("ProductDetail", "Home", new { id = product.ProductID })" class="btn btn-sm btn-outline-light">
+                                        <i class="fas fa-eye"></i> Xem chi tiết
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h5 class="product-name" data-product-name="@product.ProductName">@product.ProductName</h5>
+                                <p class="product-description">@(product.ProductDecription != null && product.ProductDecription.Length > 50 ? product.ProductDecription.Substring(0, 50) + "..." : product.ProductDecription)</p>
+                                <div class="product-price-stock d-flex justify-content-between align-items-center">
+                                    <div class="product-price" data-product-price="@product.ProductPrice">@string.Format("{0:N0}", product.ProductPrice)₫</div>
+                                    <small class="text-muted product-stock" data-product-stock="@product.StockQuantity">
+                                        <i class="fas fa-box"></i> Còn lại: @product.StockQuantity
+                                    </small>
+                                </div>
+                                <div class="product-actions mt-3">
+                                    <button class="btn btn-sm btn-primary" onclick="buyNow(@product.ProductID)" data-product-id="@product.ProductID">
+                                        <i class="fas fa-shopping-cart"></i> Mua
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="addToCart(@product.ProductID, true)" data-product-id="@product.ProductID">
+                                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        
+        @if (products != null && products.Any() && totalPages > 1)
+        {
+            <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                @if (currentPage > 1)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("CategoryProducts", "Home", new { id = categoryID, page = currentPage - 1 })">
+                                            <i class="fas fa-chevron-left"></i> Trước
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item disabled">
+                                        <span class="page-link">
+                                            <i class="fas fa-chevron-left"></i> Trước
+                                        </span>
+                                    </li>
+                                }
+
+                                @for (int i = 1; i <= totalPages; i++)
+                                {
+                                    <li class="page-item @(i == currentPage ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("CategoryProducts", "Home", new { id = categoryID, page = i })">@i</a>
+                                    </li>
+                                }
+
+                                @if (currentPage < totalPages)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("CategoryProducts", "Home", new { id = categoryID, page = currentPage + 1 })">
+                                            Sau <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item disabled">
+                                        <span class="page-link">
+                                            Sau <i class="fas fa-chevron-right"></i>
+                                        </span>
+                                    </li>
+                                }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        }
+        
+        @if (products == null || !products.Any())
+        {
+            <div class="row">
+                <div class="col-12 text-center py-5">
+                    <div class="empty-state">
+                        <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">Chưa có sản phẩm</h4>
+                        <p class="text-muted">Danh mục này hiện chưa có sản phẩm nào</p>
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary mt-3">
+                            <i class="fas fa-home me-2"></i>Về trang chủ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof initProductInteractions === 'function') {
+                initProductInteractions();
+            }
+        });
+    </script>
+}
+

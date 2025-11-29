@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ShopAKA.Models.Order>
+
+@{
+    ViewBag.Title = "Lịch sử giao dịch";
+}
+
+@section Styles {
+    <link href="~/Content/Categories.css" rel="stylesheet" />
+    <style>
+        .order-history-container {
+            padding: 40px 0;
+            min-height: 60vh;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+
+        .category-table-container {
+            margin-top: 20px;
+        }
+
+        .category-table tbody tr {
+            cursor: pointer;
+        }
+
+            .category-table tbody tr:hover {
+                background-color: #f8f9fa;
+            }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+
+            .empty-state i {
+                font-size: 64px;
+                margin-bottom: 20px;
+                color: #dee2e6;
+            }
+    </style>
+}
+
+<div class="page-header">
+    <div class="container">
+        <h1><i class="fas fa-history me-2"></i>Lịch sử giao dịch</h1>
+        <p class="mb-0">Xem lại các đơn hàng của bạn</p>
+    </div>
+</div>
+
+<div class="container order-history-container">
+    <div class="category-table-container">
+        <h3 style="color: #667eea; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">
+            <i class="fa fa-shopping-cart"></i> Danh sách đơn hàng (@(Model != null ? Model.Count() : 0))
+        </h3>
+        @{
+            ViewBag.ShowActions = true;
+            ViewBag.EmptyMessage = "Bạn chưa có đơn hàng nào. Hãy bắt đầu mua sắm ngay!";
+        }
+        @Html.Partial("~/Views/PartialView/_OrderListPartial.cshtml", Model)
+    </div>
+</div>
+

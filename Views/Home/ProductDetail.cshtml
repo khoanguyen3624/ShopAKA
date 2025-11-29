@@ -1,6 +1,7 @@
-﻿@{
+﻿@model ShopAKA.Models.Product
+
+@{
     ViewBag.Title = "Chi tiết sản phẩm - ShopAKA";
-    var product = ViewBag.Product as dynamic;
 }
 
 @functions {
@@ -54,7 +55,7 @@
         </div>
     </div>
 }
-else if (product != null)
+else if (Model != null)
 {
     <div class="product-detail-page">
         <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
@@ -62,13 +63,13 @@ else if (product != null)
                 <i class="fas fa-arrow-left"></i>
                 <span>Quay lại</span>
             </button>
-
+            
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
                 <div>
                     <div class="product-image-card">
-                        @if (!string.IsNullOrEmpty(product.image.ToString()))
+                        @if (!string.IsNullOrEmpty(Model.ProductImage))
                         {
-                            <img src="@product.image" alt="@product.name" style="width: 100%; height: 500px; object-fit: contain; background: #f8f9fa;" data-product-image />
+                            <img src="@Model.ProductImage" alt="@Model.ProductName" style="width: 100%; height: 500px; object-fit: contain; background: #f8f9fa;" data-product-image />
                         }
                         else
                         {
@@ -98,34 +99,30 @@ else if (product != null)
                 <div>
                     <div class="product-info-card">
                         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
-                            <h1 style="font-size: 24px; font-weight: bold; margin: 0; color: #212529;" data-product-name>@product.name</h1>
-                            @if (product.is_featured != null && (bool)product.is_featured)
-                            {
-                                <i class="fas fa-star" style="color: #ffc107; font-size: 20px;"></i>
-                            }
+                            <h1 style="font-size: 24px; font-weight: bold; margin: 0; color: #212529;" data-product-name>@Model.ProductName</h1>
                         </div>
-                        
-                        @if (product.category_name != null)
+
+                        @if (Model.Category != null)
                         {
                             <div style="margin-bottom: 16px;">
                                 <span style="background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 500;">
-                                    @product.category_name
+                                    @Model.Category.CategoryName
                                 </span>
                             </div>
                         }
-                        
+
                         <div style="margin-bottom: 16px;">
                             <p style="font-size: 28px; font-weight: bold; color: #28a745; margin: 0 0 4px 0;" data-product-price>
-                                @string.Format("{0:N0}", product.price) VND
+                                @string.Format("{0:N0}", Model.ProductPrice)₫
                             </p>
                             <p style="color: #6c757d; font-size: 14px; margin: 0;">Giá đã bao gồm thuế</p>
                         </div>
 
-                        @if (product.description != null)
+                        @if (!string.IsNullOrEmpty(Model.ProductDecription))
                         {
                             <div style="margin-bottom: 24px;">
                                 <h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px 0; color: #212529;">Mô tả sản phẩm</h3>
-                                <p style="color: #495057; line-height: 1.6; margin: 0;">@product.description</p>
+                                <p style="color: #495057; line-height: 1.6; margin: 0;">@Model.ProductDecription</p>
                             </div>
                         }
 
@@ -141,11 +138,17 @@ else if (product != null)
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
-                                
+
                                 <div style="color: #495057;">
                                     <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px 0;">Tổng cộng:</p>
                                     <p id="totalPrice" style="font-size: 20px; font-weight: bold; color: #28a745; margin: 0;">
-                                        @string.Format("{0:N0}", product.price) đồng
+                                        @string.Format("{0:N0}", Model.ProductPrice)₫
+                                    </p>
+                                </div>
+                                <div style="color: #495057; margin-left: 24px;">
+                                    <p style="font-size: 14px; font-weight: 500; margin: 0 0 4px 0;">Số lượng tồn:</p>
+                                    <p id="stockQuantity" style="font-size: 16px; font-weight: bold; color: @(Model.StockQuantity > 0 ? "#28a745" : "#dc3545"); margin: 0;" data-product-stock="@Model.StockQuantity">
+                                        @Model.StockQuantity sản phẩm
                                     </p>
                                 </div>
                             </div>
@@ -156,18 +159,18 @@ else if (product != null)
                                 <i class="fas fa-bolt" style="margin-right: 8px;"></i>
                                 Mua ngay
                             </button>
-                            
+
                             <button onclick="addToCart()" class="add-cart-btn">
                                 <i class="fas fa-shopping-cart" style="margin-right: 8px;"></i>
                                 Thêm vào giỏ hàng
                             </button>
                         </div>
-                        
+
                         <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e9ecef;">
                             <div style="display: flex; align-items: center; gap: 8px;">
-                                <div style="width: 8px; height: 8px; border-radius: 50%; @(product.is_available != null && (bool)product.is_available ? "background: #28a745;" : "background: #dc3545;")"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; @(Model.StockQuantity > 0 ? "background: #28a745;" : "background: #dc3545;")"></div>
                                 <span style="color: #495057; font-weight: 500; font-size: 14px;">
-                                    @if (product.is_available != null && (bool)product.is_available)
+                                    @if (Model.StockQuantity > 0)
                                     {
                                         <text>Có sẵn - Giao hàng trong 30-45 phút</text>
                                     }
@@ -182,32 +185,10 @@ else if (product != null)
                 </div>
             </div>
 
-            @if (product.specifications != null)
-            {
-                <div class="specifications-section">
-                    <h2 style="font-size: 24px; font-weight: bold; margin: 0 0 20px 0; color: #212529;">
-                        <i class="fas fa-cogs" style="color: #007bff; margin-right: 8px;"></i>
-                        Thông số kỹ thuật
-                    </h2>
-                    <div>
-                        @foreach (var spec in product.specifications)
-                        {
-                            <div class="spec-item">
-                                <span class="spec-label">@GetSpecificationLabel(spec.Name):</span>
-                                <span class="spec-value">@spec.Value</span>
-                            </div>
-                        }
-                    </div>
-                </div>
-            }
         </div>
     </div>
 
-    <div data-product-id="@product.id" style="display: none;"></div>
-    
-    @section Scripts {
-        <script src="~/Scripts/ProductDetail.js"></script>
-    }
+    <div data-product-id="@Model.ProductID" style="display: none;"></div>
 }
 else
 {
@@ -225,4 +206,7 @@ else
             </div>
         </div>
     </div>
+}  
+@section Scripts {
+    <script src="~/Scripts/ProductDetail.js"></script>
 }
